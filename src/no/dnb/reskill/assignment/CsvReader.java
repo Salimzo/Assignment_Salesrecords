@@ -23,13 +23,14 @@ public class CsvReader implements FileReader {
             while (line != null) {
 
                 String[] attributes = line.split(","); //What about first line? The titles of the columns
-                //Sale sale = new Sale(attributes);
-                //sales.add(sale);
-                line = br.readLine();
+                Sale sale = new Sale(attributes);
+                sales.add(sale);
+                line = br.readLine(); //read next line before looping, if end of file reached, line would be null
+
 
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            e.printStackTrace(); //prints the throwable along with other details like the line number and class name where the exception occurred.
         }
         return sales;
     }
