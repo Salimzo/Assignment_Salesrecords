@@ -4,13 +4,16 @@ import lombok.*;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
-import java.util.Date;
+import java.time.format.DateTimeFormatter;
 
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Sale {
+    private static final String DATE_INPUT_FORMAT = "M/d/yyyy";
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_INPUT_FORMAT);
+
     private String region;
     private String country;
     private String itemType;
@@ -32,7 +35,7 @@ public class Sale {
     }
 
     public void setOrderDate(String orderDate) throws DateTimeException {
-        this.orderDate = LocalDate.parse(orderDate);
+        this.orderDate = LocalDate.parse(orderDate, formatter);
     }
 
     public void setShipDate(int day, int month, int year) throws DateTimeException {
@@ -40,7 +43,7 @@ public class Sale {
     }
 
     public void setShipDate(String orderDate) throws DateTimeException {
-        this.shipDate = LocalDate.parse(orderDate);
+        this.shipDate = LocalDate.parse(orderDate, formatter);
     }
 
 }
