@@ -1,10 +1,13 @@
 package no.dnb.reskill.assignment;
 
+import java.util.List;
+
 public interface FileReader {
 
     //BufferedReader provides buffering of data for fast reading
-    void readFile();
+    public List<Sale> readFile(String fileName);
 
-    void writeFile();
+    //Open
+    //Close
 
 }
