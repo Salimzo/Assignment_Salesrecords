@@ -7,8 +7,9 @@ import static org.junit.Assert.*;
 public class SalesRegistryTest {
     @Test
     public void creatingSale_fromCSVLine_shouldReturnSaleObject() {
-        SalesRegistry fixture = new SalesRegistry();
-        fixture
+        String[] csvValues = {"1","2", "3"};
+        Sale s = SalesRegistry.createSaleFromCSVLine(csvValues);
+        assertTrue(s instanceof Sale);
     }
 
 }
