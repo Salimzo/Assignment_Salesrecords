@@ -1,13 +1,9 @@
 package no.dnb.reskill.assignment;
 
-import java.util.List;
+import java.io.IOException;
 
 public interface FileReader {
 
-    //BufferedReader provides buffering of data for fast reading
-    public List<Sale> readFile(String fileName);
-
-    //Open
-    //Close
+    public SalesRegistry readFile(String fileName) throws IOException;
 
 }

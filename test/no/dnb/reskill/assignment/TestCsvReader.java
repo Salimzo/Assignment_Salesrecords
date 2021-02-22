@@ -17,19 +17,17 @@ public class TestCsvReader { //make test for UI too? Rename class?
 
     @Before
     public void setup() {
-
+        //TODO
     }
 
-
     @Test
-    public void readFile_xxx() {
-
+    public void readFile_readsFromSecondRow_correct() {
+        //TODO
     }
 
     @Test (expected = IOException.class)
-    public void readFile_xxx_throwsException() {
-
-
+    public void readFile_notExistingFile_throwsException() {
+        mockCsvReader.readFile("Not_existing_file");
     }
 
 
