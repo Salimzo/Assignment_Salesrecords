@@ -2,7 +2,9 @@ package no.dnb.reskill.assignment;
 
 import lombok.*;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.util.Date;
 
 
 @Data
@@ -25,12 +27,20 @@ public class Sale {
     private double totalProfit;
 
 
-    public void setOrderDate(int day, int month, int year) {
+    public void setOrderDate(int day, int month, int year) throws DateTimeException {
         this.orderDate = LocalDate.of(year, month, day);
     }
 
-    public void setShipDate(int day, int month, int year) {
+    public void setOrderDate(String orderDate) throws DateTimeException {
+        this.orderDate = LocalDate.parse(orderDate);
+    }
+
+    public void setShipDate(int day, int month, int year) throws DateTimeException {
         this.shipDate = LocalDate.of(year, month, day);
+    }
+
+    public void setShipDate(String orderDate) throws DateTimeException {
+        this.shipDate = LocalDate.parse(orderDate);
     }
 
 }
