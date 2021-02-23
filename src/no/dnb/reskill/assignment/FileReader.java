@@ -6,4 +6,6 @@ public interface FileReader {
 
     public SalesRegistry readFile(String fileName) throws IOException;
 
+    public void openFile();
+
 }

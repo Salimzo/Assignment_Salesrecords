@@ -12,6 +12,11 @@ public class CsvReader implements FileReader {
     SalesRegistry sales = new SalesRegistry();
 
     @Override
+    public void openFile() {
+
+    }
+
+    @Override
     public SalesRegistry readFile(String fileName) {
         Path pathToFile = Paths.get(fileName);
         try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)) {
