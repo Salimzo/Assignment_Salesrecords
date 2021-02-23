@@ -18,13 +18,15 @@ public class SalesReaderCsv implements FileReader {
     }
 
     @Override
-    public void openFile() {
+    public BufferedReader openFile(String fileName) throws IOException {
+        Path pathToFile = Paths.get(fileName);
+        BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII);
+        return br;
     }
 
     @Override
     public SalesRegistry readFile(String fileName) {
-        Path pathToFile = Paths.get(fileName);
-        try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)) {
+        try (BufferedReader br = openFile(fileName)) {
             br.readLine();
             String line1;
             while ((line1 = br.readLine()) != null) {
