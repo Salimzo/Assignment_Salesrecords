@@ -9,11 +9,16 @@ import java.nio.file.Paths;
 
 public class SalesReaderCsv implements FileReader {
 
-    SalesRegistry sales = new SalesRegistry();
+    SalesRegistry sales;
+    String fileName;
+
+    public SalesReaderCsv(SalesRegistry sales, String fileName) {
+        this.sales = sales;
+        this.fileName = fileName;
+    }
 
     @Override
     public void openFile() {
-
     }
 
     @Override
@@ -21,7 +26,7 @@ public class SalesReaderCsv implements FileReader {
         Path pathToFile = Paths.get(fileName);
         try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)) {
             br.readLine();
-            String line1 = null;
+            String line1;
             while ((line1 = br.readLine()) != null) {
 
                 String[] attributes = line1.split(",");
@@ -60,7 +65,4 @@ public class SalesReaderCsv implements FileReader {
         s.setTotalProfit(       Double.parseDouble(csvLineValues[13]));
         return s;
     }
-
-    //constructør med filnavn og SR
-
 }
