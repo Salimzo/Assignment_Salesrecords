@@ -1,12 +1,21 @@
 package no.dnb.reskill.assignment;
 
+import com.sun.source.tree.Tree;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.TreeMap;
 
 
 public class SalesRegistry {
     private ArrayList<Sale> allSales = new ArrayList<>();
+    private TreeMap<String, ArrayList<Sale>> regions = new TreeMap<>();
+    private TreeMap<String, ArrayList<Sale>> countries = new TreeMap<>();
+    private TreeMap<String, ArrayList<Sale>> itemTypes = new TreeMap<>();
 
-    
+
+
     /**
      * Adds a Sale object to the array list containing all sales.
      * @param sale
@@ -23,7 +32,16 @@ public class SalesRegistry {
      * @param sale
      */
     private void indexSale(Sale sale) {
-        //TODO: Implement this function
+        updateTreeMap(regions, sale.getRegion(), sale);
+        updateTreeMap(countries, sale.getCountry(), sale);
+        updateTreeMap(itemTypes, sale.getItemType(), sale);
+    }
+
+    private void updateTreeMap(TreeMap<String, ArrayList<Sale>> treeMap, String key, Sale sale) {
+        if (!treeMap.containsKey(key)) {
+            treeMap.put(key, new ArrayList<>());
+        }
+        treeMap.get(key).add(sale);
     }
 
 
