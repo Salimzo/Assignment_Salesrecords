@@ -30,7 +30,7 @@ public class SalesReaderCsv implements FileReader {
     }
 
     @Override
-     public int readFile(String fileName) throws IOException {
+     public int readFile() throws IOException {
         try {
             String line;
             int count = 0;
