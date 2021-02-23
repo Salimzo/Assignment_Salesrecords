@@ -7,7 +7,7 @@ import org.mockito.Mock;
 
 import java.io.IOException;
 
-public class TestCsvReader { //make test for UI too? Rename class?
+public class TestCsvReader {
 
     @Mock
     CsvReader mockCsvReader;
