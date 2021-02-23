@@ -2,7 +2,15 @@ package no.dnb.reskill.assignment;
 
 
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.TreeMap;
+
+
+enum StatisticType {
+    NUMBER_OF_ORDERS_BY_REGION,
+    NUMBER_OF_ORDERS_BY_COUNTRY,
+    NUMBER_OF_ORDERS_BY_ITEMTYPE,
+}
 
 
 public class SalesRegistry {
@@ -39,6 +47,23 @@ public class SalesRegistry {
         return itemTypes.get(itemType);
     }
 
+    public ArrayList getStatistics(StatisticType type) {
+        ArrayList<String> statistics = new ArrayList<>();
+
+        switch (type) {
+            case NUMBER_OF_ORDERS_BY_REGION:
+                for(Map.Entry<String,ArrayList<Sale>> entry : regions.entrySet()) {
+                    String key = entry.getKey();
+                    ArrayList<Sale> sales = entry.getValue();
+                    statistics.add(String.format("%s: %d orders", key, sales.size()));
+                }
+                break;
+
+            default:
+                statistics.add("No valid selection. No statistic return");
+        }
+        return statistics;
+    }
 
 
     private void indexSale(Sale sale) {
