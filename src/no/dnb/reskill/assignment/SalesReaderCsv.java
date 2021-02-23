@@ -7,20 +7,30 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class CsvReader implements FileReader {
+public class SalesReaderCsv implements FileReader {
 
-    SalesRegistry sales = new SalesRegistry();
+    SalesRegistry sales;
+    String fileName;
+
+    public SalesReaderCsv(SalesRegistry sales, String fileName) {
+        this.sales = sales;
+        this.fileName = fileName;
+    }
+
+    @Override
+    public void openFile() {
+    }
 
     @Override
     public SalesRegistry readFile(String fileName) {
         Path pathToFile = Paths.get(fileName);
         try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)) {
             br.readLine();
-            String line1 = null;
+            String line1;
             while ((line1 = br.readLine()) != null) {
 
                 String[] attributes = line1.split(",");
-                Sale sale = SalesRegistry.createSaleFromCSVLine(attributes);
+                Sale sale = createSaleFromCSVLine(attributes);
                 sales.addSale(sale);
                 line1 = br.readLine(); //read next line before looping, if end of file reached, line would be null
 
@@ -55,10 +65,4 @@ public class CsvReader implements FileReader {
         s.setTotalProfit(       Double.parseDouble(csvLineValues[13]));
         return s;
     }
-
-    //constructør med filnavn og SR
-    //Endre navn
-    //openFIle
-    //Ta inn metode fra Sigbjørn
-
 }
