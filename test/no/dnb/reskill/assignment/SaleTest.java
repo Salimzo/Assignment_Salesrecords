@@ -1,6 +1,5 @@
 package no.dnb.reskill.assignment;
 
-import no.dnb.reskill.assignment.Sale;
 import org.junit.Before;
 import org.junit.Test;
 
