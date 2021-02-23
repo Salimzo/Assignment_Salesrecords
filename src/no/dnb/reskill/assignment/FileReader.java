@@ -5,8 +5,8 @@ import java.io.IOException;
 
 public interface FileReader {
 
-    public SalesRegistry readFile(String fileName) throws IOException;
+    //public SalesRegistry readFile(String fileName);
 
-    public BufferedReader openFile(String fileName) throws IOException;
+    public boolean openFile(String fileName) throws IOException;
 
 }
