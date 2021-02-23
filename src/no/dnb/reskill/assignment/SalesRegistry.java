@@ -1,10 +1,7 @@
 package no.dnb.reskill.assignment;
 
-import com.sun.source.tree.Tree;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.TreeMap;
 
 
@@ -26,11 +23,24 @@ public class SalesRegistry {
         return allSales.add(sale);
     }
 
+    public ArrayList getSales() {
+        return allSales;
+    }
 
-    /**
-     * Indexes sales by different key values, to optimize search
-     * @param sale
-     */
+    public ArrayList getSales_byRegion(String region) {
+        return regions.get(region);
+    }
+
+    public ArrayList getSales_byCountry(String country) {
+        return countries.get(country);
+    }
+
+    public ArrayList getSales_byItemType(String itemType) {
+        return itemTypes.get(itemType);
+    }
+
+
+
     private void indexSale(Sale sale) {
         updateTreeMap(regions, sale.getRegion(), sale);
         updateTreeMap(countries, sale.getCountry(), sale);
