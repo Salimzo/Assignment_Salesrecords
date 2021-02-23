@@ -8,5 +8,4 @@ public interface FileReader {
 
     public boolean openFile(String fileName) throws IOException;
 
-    int readFile() throws IOException;
 }

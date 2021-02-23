@@ -19,7 +19,6 @@ public class SalesReaderCsv implements FileReader {
 
     @Override
     public boolean openFile(String fileName) throws IOException {
-
         try {
             Path pathToFile = Paths.get(fileName);
             this.br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII);
