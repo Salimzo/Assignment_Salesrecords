@@ -30,10 +30,9 @@ public class SalesReaderCsv implements FileReader {
         }
     }
 
-    /*
-    @Override                          //try/catch
-     public int readFile() {
-
+    @Override
+     public int readFile(String fileName) throws IOException {
+        try {
             String line;
             int count = 0;
             while ((line = br.readLine()) != null) {
@@ -41,11 +40,12 @@ public class SalesReaderCsv implements FileReader {
                 Sale sale = createSaleFromCSVLine(attributes);
                 sales.addSale(sale);
                 count++;
+            }
+            return count;
+        } catch (IOException e) {
+            throw e;
         }
-        return count;
     }
-
-     */
 
     /**
      * This method converts from a array of Strings to a Sale object
