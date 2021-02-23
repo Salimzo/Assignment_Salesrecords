@@ -11,37 +11,39 @@ public class SalesReaderCsv implements FileReader {
 
     SalesRegistry sales;
     String fileName;
+    BufferedReader br;
 
-    public SalesReaderCsv(SalesRegistry sales, String fileName) {
+    public SalesReaderCsv(SalesRegistry sales) {
         this.sales = sales;
-        this.fileName = fileName;
     }
 
     @Override
-    public BufferedReader openFile(String fileName) throws IOException {
-        Path pathToFile = Paths.get(fileName);
-        BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII);
-        return br;
-    }
-
-    @Override
-    public SalesRegistry readFile(String fileName) {
-        try (BufferedReader br = openFile(fileName)) {
+    public boolean openFile(String fileName) throws IOException {
+        try {
+            Path pathToFile = Paths.get(fileName);
+            this.br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII);
             br.readLine();
-            String line1;
-            while ((line1 = br.readLine()) != null) {
+            return true;
+        } catch (IOException e) {
+            throw e;
+        }
+    }
 
-                String[] attributes = line1.split(",");
+    @Override
+     public int readFile(String fileName) throws IOException {
+        try {
+            String line;
+            int count = 0;
+            while ((line = br.readLine()) != null) {
+                String[] attributes = line.split(",");
                 Sale sale = createSaleFromCSVLine(attributes);
                 sales.addSale(sale);
-                line1 = br.readLine(); //read next line before looping, if end of file reached, line would be null
-
-
+                count++;
             }
+            return count;
         } catch (IOException e) {
-            e.printStackTrace();      //prints the throwable along line number and class name where the exception occurred
+            throw e;
         }
-        return sales;
     }
 
     /**

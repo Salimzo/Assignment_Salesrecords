@@ -9,6 +9,7 @@ import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.when;
 
 public class TestCsvReader {
 
@@ -16,11 +17,23 @@ public class TestCsvReader {
     SalesReaderCsv mockCsvReader;
 
     @InjectMocks
-    SalesRegistry fixture; //where is the method readFile() used? Should inject mock to object of that class?
+    SalesRegistry fixture;
 
     @Before
     public void setup() {
         //TODO
+        mockCsvReader = new SalesReaderCsv(fixture = new SalesRegistry());
+    }
+
+    @Test
+    public void openFile() {
+        try {
+      //      when(mockCsvReader.openFile("SalesRecords.csv")).thenReturn(true);
+            mockCsvReader.openFile("SalesRecords.csv");
+        } catch (IOException e) {
+            assertTrue(false);
+        }
+
     }
 
     @Test
@@ -30,7 +43,7 @@ public class TestCsvReader {
 
     @Test (expected = IOException.class)
     public void readFile_notExistingFile_throwsException() {
-        mockCsvReader.readFile("Not_existing_file");
+  //      mockCsvReader.readFile("Not_existing_file");
     }
 
     @Test
