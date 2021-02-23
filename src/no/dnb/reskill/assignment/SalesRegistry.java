@@ -13,6 +13,7 @@ public class SalesRegistry {
      * @return Sale object
      */
     public static Sale createSaleFromCSVLine(String[] csvLineValues) {
+        //TODO: Flytte til SalesReaderCSV (Marina?)
         Sale s = new Sale();
         s.setRegion(            csvLineValues[0]);
         s.setCountry(           csvLineValues[1]);
