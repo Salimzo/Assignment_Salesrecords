@@ -59,6 +59,28 @@ public class SalesRegistryTest {
     }
 
 
+    @Test
+    public void salesRegistry_getStatisticsAfterAddingTwoOrders_shouldReturnStatistics() {
+        // Arrange
+        Sale s1 = new Sale();
+        s1.setRegion("Middle East and North Africa");
+        s1.setCountry("Libya");
+        s1.setItemType("Cosmetics");
+        Sale s2 = new Sale();
+        s2.setRegion("Middle East and North Africa");
+        s2.setCountry("Algeria");
+        s2.setItemType("Personal Care");
+
+        // Act
+        fixture.addSale(s1);
+        fixture.addSale(s2);
+
+        // Assert
+        System.out.println(fixture.getStatisticsAsString(StatisticType.NUMBER_OF_ORDERS_BY_REGION));
+        assertTrue(false);
+    }
+
+
 
 
     //Middle East and North Africa,Libya,Cosmetics,Offline,M,10/18/2014,686800706,10/31/2014,8446,437.20,263.33,3692591.20,2224085.18,1468506.02

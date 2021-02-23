@@ -65,6 +65,15 @@ public class SalesRegistry {
         return statistics;
     }
 
+    public String getStatisticsAsString(StatisticType type) {
+        ArrayList<String> statistics = getStatistics(type);
+        StringBuilder sb = new StringBuilder();
+        for ( String s : statistics ) {
+            sb.append(s + "\n");
+        }
+        return sb.toString();
+    }
+
 
     private void indexSale(Sale sale) {
         updateTreeMap(regions, sale.getRegion(), sale);
