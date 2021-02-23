@@ -7,7 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class CsvReader implements FileReader {
+public class SalesReaderCsv implements FileReader {
 
     SalesRegistry sales = new SalesRegistry();
 
@@ -25,7 +25,7 @@ public class CsvReader implements FileReader {
             while ((line1 = br.readLine()) != null) {
 
                 String[] attributes = line1.split(",");
-                Sale sale = SalesRegistry.createSaleFromCSVLine(attributes);
+                Sale sale = createSaleFromCSVLine(attributes);
                 sales.addSale(sale);
                 line1 = br.readLine(); //read next line before looping, if end of file reached, line would be null
 
@@ -62,8 +62,5 @@ public class CsvReader implements FileReader {
     }
 
     //constructør med filnavn og SR
-    //Endre navn
-    //openFIle
-    //Ta inn metode fra Sigbjørn
 
 }
