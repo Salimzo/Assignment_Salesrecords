@@ -1,11 +1,6 @@
 package no.dnb.reskill.assignment;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class SalesReaderCsv implements FileReaderWriter {
 
@@ -43,7 +38,7 @@ public class SalesReaderCsv implements FileReaderWriter {
     }
 
     @Override
-    public boolean writeFile(String newFileName, String fileFormat, String... neededInformation) throws IOException {
+    public boolean writeFile(String newFileName) throws IOException {
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(newFileName)));
         return false;
     }

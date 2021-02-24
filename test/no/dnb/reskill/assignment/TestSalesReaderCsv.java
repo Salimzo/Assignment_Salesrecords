@@ -2,47 +2,39 @@ package no.dnb.reskill.assignment;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.file.NoSuchFileException;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class TestSalesReaderCsv {
 
-    @Mock
-    SalesReaderCsv mockSalesReaderCsv;
+    SalesRegistry salesRegistry;
+    SalesReaderCsv salesReaderCsv;
+    SalesReaderCsv readerOneLine;
+    SalesReaderCsv readerTenLines;
+    SalesReaderCsv readerEmptyFile;
 
-    @InjectMocks
-    SalesRegistry fixture;
 
     @Before
-    public void setup() {
-        MockitoAnnotations.initMocks(this);
-        //mockSalesReaderCsv = new SalesReaderCsv(fixture = new SalesRegistry());
+    public void setup() throws IOException {
+        salesRegistry = new SalesRegistry();
+        salesReaderCsv = new SalesReaderCsv(salesRegistry, "SalesRecords.csv");
+
+        //readerOneLine = new SalesReaderCsv(salesRegistry, "FileOneLine.rtf");
+        //readerTenLines = new SalesReaderCsv(salesRegistry, "FileTenLines.rtf");
+        //readerEmptyFile = new SalesReaderCsv(salesRegistry, "EmptyFile.rtf");
     }
 
-    @Test (expected = IOException.class)
-    public void openFile_notExistingFile_throwsException() {
-        try {
-            mockSalesReaderCsv.openFile("Not_existing_file.csv");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    @Test (expected = FileNotFoundException.class)
+    public void openFile_notExistingFile_throwsException() throws FileNotFoundException {
+        salesReaderCsv.openFile("NotExistingFile.csv");
     }
 
     @Test
-    public void openFile() {
-        try {
-      //      when(mockCsvReader.openFile("SalesRecords.csv")).thenReturn(true);
-            mockSalesReaderCsv.openFile("SalesRecords.csv");
-        } catch (IOException e) {
-            assertTrue(false);
-        }
+    public void openFile_existingFile_returnTrue() throws FileNotFoundException {
+        assertTrue(salesReaderCsv.openFile("SalesRecords.csv"));
     }
 
     @Test
@@ -51,12 +43,10 @@ public class TestSalesReaderCsv {
     }
 
 
-
-
     @Test
     public void creatingSale_fromCSVLine_shouldReturnSaleObject() {
         String[] csvValues = {"1","2", "3"};
-        Sale s = mockSalesReaderCsv.createSaleFromCSVLine(csvValues);
+        Sale s = salesReaderCsv.createSaleFromCSVLine(csvValues);
         assertTrue(s instanceof Sale);
     }
 
@@ -65,7 +55,7 @@ public class TestSalesReaderCsv {
         // TODO: Should be improved
         String csvLine = "Middle East and North Africa,Libya,Cosmetics,Offline,M,10/18/2014,686800706,10/31/2014,8446,437.20,263.33,3692591.20,2224085.18,1468506.02";
         String[] csvValues = csvLine.split(",");
-        Sale s = mockSalesReaderCsv.createSaleFromCSVLine(csvValues);
+        Sale s = salesReaderCsv.createSaleFromCSVLine(csvValues);
         double expectedTotalProfit = 1468506.02;
         assertEquals(expectedTotalProfit, s.getTotalProfit(), 0);
     }
