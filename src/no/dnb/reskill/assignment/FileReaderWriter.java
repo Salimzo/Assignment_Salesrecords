@@ -10,6 +10,5 @@ public interface FileReaderWriter {
 
     public boolean openFile(String fileName) throws IOException;
 
-    //Endre navn
 
 }
