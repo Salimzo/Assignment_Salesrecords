@@ -18,9 +18,17 @@ public class SalesReaderCsv implements FileReaderWriter {
 
     @Override
     public boolean openFile(String fileName) throws IOException {
-        this.br = new BufferedReader(new FileReader(fileName));
-        br.readLine();
-        return true;
+        try {
+            this.br = new BufferedReader(new FileReader(fileName));
+            br.readLine();
+            return true;
+        } catch (IOException e) {
+            System.out.println("Something went wrong.");
+            e.getMessage();
+            e.printStackTrace();
+            e.toString();
+            return false;
+        }
     }
 
     @Override
