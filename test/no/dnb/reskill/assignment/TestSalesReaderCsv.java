@@ -4,8 +4,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import java.io.IOException;
+import java.nio.file.NoSuchFileException;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -20,8 +22,17 @@ public class TestSalesReaderCsv {
 
     @Before
     public void setup() {
-        //TODO
+        MockitoAnnotations.initMocks(this);
         mockSalesReaderCsv = new SalesReaderCsv(fixture = new SalesRegistry());
+    }
+
+    @Test (expected = IOException.class)
+    public void openFile_notExistingFile_throwsException() {
+        try {
+            mockSalesReaderCsv.openFile("Not_existing_file.csv");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
@@ -32,7 +43,6 @@ public class TestSalesReaderCsv {
         } catch (IOException e) {
             assertTrue(false);
         }
-
     }
 
     @Test
@@ -41,14 +51,7 @@ public class TestSalesReaderCsv {
     }
 
 
-    @Test (expected = IOException.class)
-    public void readFile_notExistingFile_throwsException() {
-        try {
-            mockSalesReaderCsv.readFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
 
     @Test
     public void creatingSale_fromCSVLine_shouldReturnSaleObject() {
@@ -66,11 +69,5 @@ public class TestSalesReaderCsv {
         double expectedTotalProfit = 1468506.02;
         assertEquals(expectedTotalProfit, s.getTotalProfit(), 0);
     }
-
-    //endre navn
-
-
-
-
 
 }

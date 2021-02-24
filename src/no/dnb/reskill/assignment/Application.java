@@ -64,7 +64,7 @@ public class Application implements Usable {
                         break;
                     case 3:
 
-                           System.out.println(sr.getStatisticsAsString(StatisticType.NUMBER_OF_ORDERS_BY_COUNTRY));;
+                           System.out.println(sr.getStatisticsAsString(StatisticType.XXXXXXXXXXXXX));;
 
                         break;
                     case 4:
@@ -74,7 +74,7 @@ public class Application implements Usable {
                         break;
                     case 5:
 
-                        System.out.println(sr.getStatisticsAsString(StatisticType.NUMBER_OF_ORDERS_BY_ITEMTYPE));
+                        System.out.println(sr.getStatisticsAsString(StatisticType.XXXXXXXXXXXXX));
 
                         break;
                 }

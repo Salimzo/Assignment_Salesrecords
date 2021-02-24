@@ -10,6 +10,7 @@ enum StatisticType {
     NUMBER_OF_ORDERS_BY_REGION,
     NUMBER_OF_ORDERS_BY_COUNTRY,
     NUMBER_OF_ORDERS_BY_ITEMTYPE,
+    REGIONAL_KEY_NUMBERS
 }
 
 
@@ -52,11 +53,19 @@ public class SalesRegistry {
 
         switch (type) {
             case NUMBER_OF_ORDERS_BY_REGION:
-                for(Map.Entry<String,ArrayList<Sale>> entry : regions.entrySet()) {
-                    String key = entry.getKey();
-                    ArrayList<Sale> sales = entry.getValue();
-                    statistics.add(String.format("%s: %d orders", key, sales.size()));
-                }
+                countSizeOfTreeMapValues(statistics, regions);
+                break;
+
+            case NUMBER_OF_ORDERS_BY_COUNTRY:
+                countSizeOfTreeMapValues(statistics, countries);
+                break;
+
+            case NUMBER_OF_ORDERS_BY_ITEMTYPE:
+                countSizeOfTreeMapValues(statistics, itemTypes);
+                break;
+
+            case REGIONAL_KEY_NUMBERS:
+                // TODO : Ongoing.
                 break;
 
             default:
@@ -64,6 +73,25 @@ public class SalesRegistry {
         }
         return statistics;
     }
+
+
+    private void countSizeOfTreeMapValues(ArrayList<String> statistics, TreeMap<String,ArrayList<Sale>> map) {
+        for(Map.Entry<String,ArrayList<Sale>> entry : map.entrySet()) {
+            String key = entry.getKey();
+            ArrayList<Sale> sales = entry.getValue();
+            statistics.add(String.format("%s: %d orders", key, sales.size()));
+        }
+    }
+
+    private void extractKeyNumbersFromMapValues(ArrayList<String> statistics, TreeMap<String,ArrayList<Sale>> map) {
+        for(Map.Entry<String,ArrayList<Sale>> entry : map.entrySet()) {
+            String key = entry.getKey();
+            ArrayList<Sale> sales = entry.getValue();
+            statistics.add(String.format("%s: %d orders", key, sales.size()));
+        }
+    }
+
+
 
     public String getStatisticsAsString(StatisticType type) {
         ArrayList<String> statistics = getStatistics(type);

@@ -3,6 +3,7 @@ package no.dnb.reskill.assignment;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -18,12 +19,15 @@ public class SalesReaderCsv implements FileReaderWriter {
     @Override
     public boolean openFile(String fileName) throws IOException {
         try {
-            Path pathToFile = Paths.get(fileName);
-            this.br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII);
+            this.br = new BufferedReader(new FileReader(fileName));
             br.readLine();
             return true;
         } catch (IOException e) {
-            throw e;
+            System.out.println("Something went wrong.");
+            e.getMessage();
+            e.printStackTrace();
+            e.toString();
+            return false;
         }
     }
 
