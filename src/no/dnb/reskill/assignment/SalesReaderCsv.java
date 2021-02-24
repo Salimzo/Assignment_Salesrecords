@@ -45,7 +45,7 @@ public class SalesReaderCsv implements FileReader {
     }
 
     @Override
-    public boolean writeFile(String newFileName) throws IOException {
+    public boolean writeFile(String newFileName, String fileFormat ... String neededInformation) throws IOException {
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(newFileName)));
         return false;
     }
