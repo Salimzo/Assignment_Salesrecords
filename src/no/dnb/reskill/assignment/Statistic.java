@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Statistic {
+public abstract class Statistic {
     String description;
     Sale sale;
 
@@ -13,5 +13,8 @@ public class Statistic {
         this.description = description;
     }
 
+    public abstract void add(double value);
+
+    public abstract void add(int value);
 
 }

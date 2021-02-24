@@ -20,7 +20,7 @@ public class SalesRegistry {
     private TreeMap<String, ArrayList<Sale>> regions = new TreeMap<>();
     private TreeMap<String, ArrayList<Sale>> countries = new TreeMap<>();
     private TreeMap<String, ArrayList<Sale>> itemTypes = new TreeMap<>();
-    private HashMap<String, Statistic> statisticStorage;
+    private StatisticRegistry statisticRegistry;
 
     /**
      * Adds a Sale object to the array list containing all sales.
@@ -48,6 +48,18 @@ public class SalesRegistry {
         return itemTypes.get(itemType);
     }
 
+
+
+
+    public String getStatisticsAsString(StatisticType type) {
+        ArrayList<String> statistics = getStatistics(type);
+        StringBuilder sb = new StringBuilder();
+        for ( String s : statistics ) {
+            sb.append(s + "\n");
+        }
+        return sb.toString();
+    }
+
     public ArrayList getStatistics(StatisticType type) {
         ArrayList<String> statistics = new ArrayList<>();
 
@@ -65,7 +77,7 @@ public class SalesRegistry {
                 break;
 
             case REGIONAL_KEY_NUMBERS:
-                // TODO : Ongoing.
+                extractKeyNumbersFromMapValues(statistics, regions);
                 break;
 
             default:
@@ -73,6 +85,9 @@ public class SalesRegistry {
         }
         return statistics;
     }
+
+
+
 
 
     private void countSizeOfTreeMapValues(ArrayList<String> statistics, TreeMap<String,ArrayList<Sale>> map) {
@@ -83,39 +98,30 @@ public class SalesRegistry {
         }
     }
 
+
     private void extractKeyNumbersFromMapValues(ArrayList<String> statistics, TreeMap<String,ArrayList<Sale>> map) {
-        this.statisticStorage = new HashMap<>();
-
-        statisticStorage.put("Overall profit", null);
-        statisticStorage.put("Most profitable", null);
-        statisticStorage.put("Least profitable", null);
-        statisticStorage.put("Total units sold", null);
-        statisticStorage.put("Highest amount of units sold", null);
-        statisticStorage.put("Lowest amount of units sold", null);
-
-
         for(Map.Entry<String,ArrayList<Sale>> entry : map.entrySet()) {
-
-
+            statisticRegistry = new StatisticRegistry();
 
             String key = entry.getKey();
             ArrayList<Sale> sales = entry.getValue();
-            //statistics.add(String.format("%s: %d orders", key, sales.size()));
-
+            statistics.add(String.format("Key numbers for %s:", key));
+            evaluateSales(sales);
+            for (String s : statisticRegistry.getStatistics()) {
+                statistics.add(s);
+            }
         }
     }
 
-    private to add to hash map
-
-
-    public String getStatisticsAsString(StatisticType type) {
-        ArrayList<String> statistics = getStatistics(type);
-        StringBuilder sb = new StringBuilder();
-        for ( String s : statistics ) {
-            sb.append(s + "\n");
+    // TODO: move to StatisticRegistry ???
+   private void evaluateSales(ArrayList<Sale> sales) {
+        for (Sale sale : sales) {
+            statisticRegistry.evaluateSale(sale);
         }
-        return sb.toString();
-    }
+
+   }
+
+
 
 
     private void indexSale(Sale sale) {

@@ -15,4 +15,11 @@ public class StatisticInt extends Statistic {
     public void add(int valueToAdd) {
         this.statisticValue += valueToAdd;
     }
+
+    public void add(double valueToAdd){}
+
+    @Override
+    public String toString() {
+        return String.format("%s: %d", description, statisticValue);
+    }
 }

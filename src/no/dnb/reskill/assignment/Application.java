@@ -46,7 +46,7 @@ public class Application implements Usable {
                         System.out.println(sr.getStatisticsAsString(StatisticType.NUMBER_OF_ORDERS_BY_REGION));
                         break;
                     case 2:
-                        System.out.println(sr.getStatisticsAsString(StatisticType.REGIONAL_KEY_NUMBERS));
+                        System.out.println(sr.getStatisticsAsString(StatisticType.REGIONAL_KEY_NUMBERS) );
                         break;
                     case 3:
                         System.out.println(sr.getStatisticsAsString(StatisticType.NUMBER_OF_ORDERS_BY_COUNTRY));
@@ -59,7 +59,7 @@ public class Application implements Usable {
                         break;
                 }
             } catch (Exception e) {
-                System.out.printf("Wrong input.", e.getMessage(), e.getCause());
+                System.out.printf("Wrong input.\n%s\n%s\n", e.getMessage(), e.getCause());
             }
         } while (option != 6);
     }
