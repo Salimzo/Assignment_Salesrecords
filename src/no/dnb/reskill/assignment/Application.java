@@ -36,7 +36,7 @@ public class Application implements Usable {
                 System.out.println("Menu choice 4: Summary information");
                 System.out.println("Menu choice 5: Item key numbers");
                 System.out.println("6 Quit!");
-                System.out.println("----------------");
+                System.out.println("------------------------------------------");
 
                 option = helper.getInt("Choose one of the options above: ");
 
@@ -46,16 +46,16 @@ public class Application implements Usable {
                         System.out.println(sr.getStatisticsAsString(StatisticType.NUMBER_OF_ORDERS_BY_REGION));
                         break;
                     case 2:
-                        //System.out.println(sr.getStatisticsAsString(StatisticType.XXXXXXXXXXXXX));
+                        System.out.println(sr.getStatisticsAsString(StatisticType.REGIONAL_KEY_NUMBERS));
                         break;
                     case 3:
-                        //System.out.println(sr.getStatisticsAsString(StatisticType.XXXXXXXXXXXXX));
+                        System.out.println(sr.getStatisticsAsString(StatisticType.NUMBER_OF_ORDERS_BY_COUNTRY));
                         break;
                     case 4:
                         //System.out.println(sr.getStatisticsAsString(StatisticType.XXXXXXXXXXXXX));
                         break;
                     case 5:
-                        //System.out.println(sr.getStatisticsAsString(StatisticType.XXXXXXXXXXXXX));
+                        System.out.println(sr.getStatisticsAsString(StatisticType.NUMBER_OF_ORDERS_BY_ITEMTYPE));
                         break;
                 }
             } catch (Exception e) {
