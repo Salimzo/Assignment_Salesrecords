@@ -2,6 +2,7 @@ package no.dnb.reskill.assignment;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -19,8 +20,7 @@ public class SalesRegistry {
     private TreeMap<String, ArrayList<Sale>> regions = new TreeMap<>();
     private TreeMap<String, ArrayList<Sale>> countries = new TreeMap<>();
     private TreeMap<String, ArrayList<Sale>> itemTypes = new TreeMap<>();
-
-
+    private HashMap<String, Statistic> statisticStorage;
 
     /**
      * Adds a Sale object to the array list containing all sales.
@@ -84,13 +84,28 @@ public class SalesRegistry {
     }
 
     private void extractKeyNumbersFromMapValues(ArrayList<String> statistics, TreeMap<String,ArrayList<Sale>> map) {
+        this.statisticStorage = new HashMap<>();
+
+        statisticStorage.put("Overall profit", null);
+        statisticStorage.put("Most profitable", null);
+        statisticStorage.put("Least profitable", null);
+        statisticStorage.put("Total units sold", null);
+        statisticStorage.put("Highest amount of units sold", null);
+        statisticStorage.put("Lowest amount of units sold", null);
+
+
         for(Map.Entry<String,ArrayList<Sale>> entry : map.entrySet()) {
+
+
+
             String key = entry.getKey();
             ArrayList<Sale> sales = entry.getValue();
-            statistics.add(String.format("%s: %d orders", key, sales.size()));
+            //statistics.add(String.format("%s: %d orders", key, sales.size()));
+
         }
     }
 
+    private to add to hash map
 
 
     public String getStatisticsAsString(StatisticType type) {
