@@ -1,24 +1,29 @@
 package no.dnb.reskill.assignment;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class Application implements Usable {
 
-    private Helper helper = new Helper();
+    private UI helper = new Helper();
     private SalesRegistry sr = new SalesRegistry();
 
-    public void start () {
-        String fileName = helper.getString("Enter CSV.file name");
-        SalesReaderCsv fileReader = new SalesReaderCsv(sr);
-        try {
-            if(fileReader.openFile(fileName)) {
-                fileReader.readFile();
-                menu();
-            }
-        } catch (IOException e) {
-            System.out.println("Can't find file, sorry pal.");
-        }
+    public String getFileNameFromUser() {
+        return helper.getString("Enter CSV.file name");
     }
+
+    public void start() {
+        try {
+            SalesReaderCsv fileReader = new SalesReaderCsv(sr, getFileNameFromUser());
+        } catch (FileNotFoundException e) {
+            System.out.println("Can't find file, sorry pal.");
+        } catch (IOException e) {
+            System.out.println("Can't read file, sorry pal.");
+        }
+        menu();
+    }
+
+
 
     public void menu() {
         int option = -1;

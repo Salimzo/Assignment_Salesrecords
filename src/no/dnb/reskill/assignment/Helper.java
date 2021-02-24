@@ -3,31 +3,31 @@ package no.dnb.reskill.assignment;
 import java.util.Scanner;
 import java.util.Collection;
 
-public class Helper {
+public class Helper implements UI {
 
     // Create a Scanner object, to get keyboard input.
-    private static Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
 
     // Get a String from the user.
-    public static String getString(String promptMsg) {
+    public String getString(String promptMsg) {
         System.out.printf("%s", promptMsg);
         return scanner.next();
     }
 
     // Get a double from the user.
-    public static double getDouble(String promptMsg) {
+    public double getDouble(String promptMsg) {
         System.out.printf("%s", promptMsg);
         return scanner.nextDouble();
     }
 
     // Get an int from the user.
-    public static int getInt(String promptMsg) {
+    public int getInt(String promptMsg) {
         System.out.printf("%s", promptMsg);
         return scanner.nextInt();
     }
 
     // Generic method, displays all the items in a Collection<T>.
-    public static <T> void displayCollection(Collection<T> list) {
+    public <T> void displayCollection(Collection<T> list) {
         System.out.printf("Elements in %s:\n", list.getClass().getName());
         for (T element : list) {
             System.out.printf("  %s value: %s.\n", element.getClass().getName(), element);

@@ -23,7 +23,7 @@ public class TestSalesReaderCsv {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        mockSalesReaderCsv = new SalesReaderCsv(fixture = new SalesRegistry());
+        //mockSalesReaderCsv = new SalesReaderCsv(fixture = new SalesRegistry());
     }
 
     @Test (expected = IOException.class)

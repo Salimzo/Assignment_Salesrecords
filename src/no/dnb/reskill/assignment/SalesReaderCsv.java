@@ -12,27 +12,21 @@ public class SalesReaderCsv implements FileReaderWriter {
     SalesRegistry sales;
     BufferedReader br;
 
-    public SalesReaderCsv(SalesRegistry sales) {
+    public SalesReaderCsv(SalesRegistry sales, String fileName) throws FileNotFoundException, IOException {
         this.sales = sales;
+        openFile(fileName);
+        readFile();
     }
 
     @Override
-    public boolean openFile(String fileName) throws IOException {
-        try {
+    public boolean openFile(String fileName) throws FileNotFoundException{
             this.br = new BufferedReader(new FileReader(fileName));
-            br.readLine();
             return true;
-        } catch (IOException e) {
-            System.out.println("Something went wrong.");
-            e.getMessage();
-            e.printStackTrace();
-            e.toString();
-            return false;
-        }
     }
 
     @Override
      public int readFile() throws IOException {
+        br.readLine();
         try {
             String line;
             int count = 0;
