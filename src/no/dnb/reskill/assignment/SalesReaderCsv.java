@@ -1,7 +1,6 @@
 package no.dnb.reskill.assignment;
 
-import java.io.BufferedReader;
-import java.io.IOException;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -10,7 +9,6 @@ import java.nio.file.Paths;
 public class SalesReaderCsv implements FileReader {
 
     SalesRegistry sales;
-    String fileName;
     BufferedReader br;
 
     public SalesReaderCsv(SalesRegistry sales) {
@@ -46,6 +44,12 @@ public class SalesReaderCsv implements FileReader {
         }
     }
 
+    @Override
+    public boolean writeFile(String newFileName) throws IOException {
+        PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(newFileName)));
+        return false;
+    }
+
     /**
      * This method converts from a array of Strings to a Sale object
      * @param csvLineValues String array with each sale variable represented as array value
@@ -69,4 +73,6 @@ public class SalesReaderCsv implements FileReader {
         s.setTotalProfit(       Double.parseDouble(csvLineValues[13]));
         return s;
     }
+
+
 }
