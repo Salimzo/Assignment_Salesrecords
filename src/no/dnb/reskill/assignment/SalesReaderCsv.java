@@ -6,7 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class SalesReaderCsv implements FileReader {
+public class SalesReaderCsv implements FileReaderWriter {
 
     SalesRegistry sales;
     BufferedReader br;
@@ -45,7 +45,7 @@ public class SalesReaderCsv implements FileReader {
     }
 
     @Override
-    public boolean writeFile(String newFileName, String fileFormat ... String neededInformation) throws IOException {
+    public boolean writeFile(String newFileName, String fileFormat, String... neededInformation) throws IOException {
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(newFileName)));
         return false;
     }
