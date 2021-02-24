@@ -9,7 +9,8 @@ public class Application implements Usable {
     private SalesRegistry sr = new SalesRegistry();
 
     public String getFileNameFromUser() {
-        return helper.getString("Enter CSV.file name");
+        return "SalesRecords.csv";
+//        return helper.getString("Enter CSV.file name");
     }
 
     public void start() {
