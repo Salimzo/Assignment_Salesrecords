@@ -24,7 +24,7 @@ public class SalesReaderCsv implements FileReaderWriter {
         br.readLine();
         try {
             String line;
-            int count = 0;
+            int count = 1;
             while ((line = br.readLine()) != null) {
                 String[] attributes = line.split(",");
                 Sale sale = createSaleFromCSVLine(attributes);

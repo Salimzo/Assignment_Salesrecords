@@ -2,18 +2,23 @@ package no.dnb.reskill.assignment;
 
 import org.junit.Before;
 import org.junit.Test;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.*;
 
 public class TestSalesReaderCsv {
 
     SalesRegistry salesRegistry;
     SalesReaderCsv salesReaderCsv;
+
+    SalesRegistry salesRegistry1;
     SalesReaderCsv readerOneLine;
+
+    SalesRegistry salesRegistry2;
     SalesReaderCsv readerTenLines;
+
+    SalesRegistry salesRegistry3;
     SalesReaderCsv readerEmptyFile;
 
 
@@ -21,10 +26,6 @@ public class TestSalesReaderCsv {
     public void setup() throws IOException {
         salesRegistry = new SalesRegistry();
         salesReaderCsv = new SalesReaderCsv(salesRegistry, "SalesRecords.csv");
-
-        //readerOneLine = new SalesReaderCsv(salesRegistry, "FileOneLine.rtf");
-        //readerTenLines = new SalesReaderCsv(salesRegistry, "FileTenLines.rtf");
-        //readerEmptyFile = new SalesReaderCsv(salesRegistry, "EmptyFile.rtf");
     }
 
     @Test (expected = FileNotFoundException.class)
@@ -38,10 +39,25 @@ public class TestSalesReaderCsv {
     }
 
     @Test
-    public void readFile_readsFromSecondRow_correct() {
-        //TODO
+    public void readFile_readsFileOneLine_counterOne() throws IOException {
+        salesRegistry1 = new SalesRegistry();
+        readerOneLine = new SalesReaderCsv(salesRegistry1, "FileOneLine.csv");
+        assertThat(readerOneLine.readFile(), equalTo(1));
     }
 
+    @Test
+    public void readFile_readsFileTenLines_counterTen() throws IOException {
+        salesRegistry2 = new SalesRegistry();
+        readerTenLines = new SalesReaderCsv(salesRegistry2, "FileTenLines.csv");
+        assertThat(readerTenLines.readFile(), equalTo(10));
+    }
+
+    @Test
+    public void readFile_readsEmptyFile_counterOne() throws IOException {
+        salesRegistry3 = new SalesRegistry();
+        readerEmptyFile = new SalesReaderCsv(salesRegistry3, "EmptyFile.csv");
+        assertThat(readerEmptyFile.readFile(), equalTo(1));
+    }
 
     @Test
     public void creatingSale_fromCSVLine_shouldReturnSaleObject() {
