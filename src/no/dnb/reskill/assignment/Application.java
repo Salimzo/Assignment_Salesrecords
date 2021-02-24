@@ -1,5 +1,7 @@
 package no.dnb.reskill.assignment;
 
+import jdk.swing.interop.SwingInterOpUtils;
+
 import java.io.IOException;
 import java.util.*;
 
@@ -33,8 +35,6 @@ public class Application implements Usable {
 
     public void menu() {
 
-        String file;
-        int index;
 
         int option = -1;
         do {
@@ -42,15 +42,11 @@ public class Application implements Usable {
             try {
                 System.out.println("Options");
                 System.out.println("Menu choice 1: Number of orders by region");
-                System.out.println("Menu choice 2: ");
-                System.out.println("Menu choice 3");
-                System.out.println("Menu choice 4");
-                System.out.println("Menu choice 5");
-                System.out.println("Menu choice 6");
-                System.out.println("Menu choice 7");
-                System.out.println("Menu choice 8");
-                System.out.println("Menu choice 9");
-                System.out.println("10 Quit!");
+                System.out.println("Menu choice 2: Regional key numbers");
+                System.out.println("Menu choice 3: Country key numbers");
+                System.out.println("Menu choice 4: Summary information");
+                System.out.println("Menu choice 5: Item key numbers");
+                System.out.println("6 Quit!");
                 System.out.println("----------------");
 
                 option = helper.getInt("Choose one of the options above: ");
@@ -62,50 +58,30 @@ public class Application implements Usable {
                         break;
 
                     case 2:
-                        if(false) {
-                            System.out.println("");
-                        }
+
+                        System.out.println(sr.getStatisticsAsString(StatisticType.XXXXXXXXXXXXX));
+
                         break;
                     case 3:
-                        if(false) {
-                        System.out.println("");
-                    }
+
+                           System.out.println(sr.getStatisticsAsString(StatisticType.XXXXXXXXXXXXX));;
+
                         break;
                     case 4:
-                        if (false) {
-                            System.out.println("");
-                        }
+
+                            System.out.println(sr.getStatisticsAsString(StatisticType.XXXXXXXXXXXXX));
+
                         break;
                     case 5:
-                        if (false) {
-                            System.out.println("");
-                        }
-                        break;
-                    case 6:
-                        if (false) {
-                            System.out.println("");
-                        }
-                        break;
-                    case 7: if(false) {
-                        System.out.println("");
-                    }
-                        break;
-                    case 8: if (false) {
-                        System.out.println("");
-                    }
-                        break;
-                    case 9: if(false) {
-                        System.out.println();
-                    }
-                        break;
-                    default:
 
+                        System.out.println(sr.getStatisticsAsString(StatisticType.XXXXXXXXXXXXX));
 
+                        break;
                 }
             } catch (Exception e) {
 
             }
-        } while (option != 10);
+        } while (option != 6);
     }
 
 }
