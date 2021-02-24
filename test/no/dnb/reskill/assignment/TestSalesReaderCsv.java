@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import java.io.IOException;
 import java.nio.file.NoSuchFileException;
@@ -21,7 +22,7 @@ public class TestSalesReaderCsv {
 
     @Before
     public void setup() {
-        //TODO
+        MockitoAnnotations.initMocks(this);
         mockSalesReaderCsv = new SalesReaderCsv(fixture = new SalesRegistry());
     }
 
