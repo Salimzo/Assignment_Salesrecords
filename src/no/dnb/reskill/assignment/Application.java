@@ -59,22 +59,22 @@ public class Application implements Usable {
 
                     case 2:
 
-                        System.out.println(sr.getStatisticsAsString(StatisticType.XXXXXXXXXXXXX));
+//                        System.out.println(sr.getStatisticsAsString(StatisticType.XXXXXXXXXXXXX));
 
                         break;
                     case 3:
 
-                           System.out.println(sr.getStatisticsAsString(StatisticType.XXXXXXXXXXXXX));;
+//                           System.out.println(sr.getStatisticsAsString(StatisticType.XXXXXXXXXXXXX));;
 
                         break;
                     case 4:
 
-                            System.out.println(sr.getStatisticsAsString(StatisticType.XXXXXXXXXXXXX));
+//                            System.out.println(sr.getStatisticsAsString(StatisticType.XXXXXXXXXXXXX));
 
                         break;
                     case 5:
 
-                        System.out.println(sr.getStatisticsAsString(StatisticType.XXXXXXXXXXXXX));
+//                        System.out.println(sr.getStatisticsAsString(StatisticType.XXXXXXXXXXXXX));
 
                         break;
                 }
