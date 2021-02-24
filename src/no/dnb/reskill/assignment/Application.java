@@ -24,7 +24,6 @@ public class Application implements Usable {
     }
 
 
-
     public void menu() {
         int option = -1;
         do {
