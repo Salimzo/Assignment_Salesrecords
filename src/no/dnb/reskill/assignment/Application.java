@@ -53,22 +53,49 @@ public class Application implements Usable {
                 switch (option) {
 
                     case 1:
+                        if() {
+                        System.out.println("");
+                    }
                         break;
+                        if() {
+                            System.out.println("");
+                        }
                     case 2:
+                        if() {
+                            System.out.println("");
+                        }
                         break;
                     case 3:
+                        if() {
+                        System.out.println("");
+                    }
                         break;
                     case 4:
+                        if () {
+                            System.out.println("");
+                        }
                         break;
                     case 5:
+                        if () {
+                            System.out.println("");
+                        }
                         break;
                     case 6:
+                        if () {
+                            System.out.println("");
+                        }
                         break;
-                    case 7:
+                    case 7: if() {
+                        System.out.println("");
+                    }
                         break;
-                    case 8:
+                    case 8: if () {
+                        System.out.println("");
+                    }
                         break;
-                    case 9:
+                    case 9: if() {
+                        System.out.println();
+                    }
                         break;
                     default:
 
