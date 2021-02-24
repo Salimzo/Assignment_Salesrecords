@@ -101,11 +101,11 @@ public class SalesRegistry {
 
     private void extractKeyNumbersFromMapValues(ArrayList<String> statistics, TreeMap<String,ArrayList<Sale>> map) {
         for(Map.Entry<String,ArrayList<Sale>> entry : map.entrySet()) {
-            statisticRegistry = new StatisticRegistry();
+            statisticRegistry = new StatisticRegistry(StatisticGroup.REGION); //TODO: Optimize use of enum
 
             String key = entry.getKey();
             ArrayList<Sale> sales = entry.getValue();
-            statistics.add(String.format("Key numbers for %s:", key));
+            statistics.add(String.format("\n------------ Key numbers for %s:", key));
             evaluateSales(sales);
             for (String s : statisticRegistry.getStatistics()) {
                 statistics.add(s);

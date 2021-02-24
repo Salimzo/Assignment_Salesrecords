@@ -6,20 +6,24 @@ import lombok.Setter;
 @Getter
 @Setter
 public class StatisticInt extends Statistic {
-    int statisticValue;
+    long value;
 
-    public StatisticInt(String description) {
-        super(description);
+    public StatisticInt(StatisticValue statisticValue, StatisticGroup groupBy) {
+        super(statisticValue, groupBy);
     }
 
-    public void add(int valueToAdd) {
-        this.statisticValue += valueToAdd;
+    public void add(long valueToAdd) {
+        this.value += valueToAdd;
     }
-
     public void add(double valueToAdd){}
+    public double getDoubleValue() {
+        return 0;
+    }
+    public long getIntValue() { return value; }
+
 
     @Override
     public String toString() {
-        return String.format("%s: %d", description, statisticValue);
+        return String.format("%s: %s", getDescription(), getText());
     }
 }
