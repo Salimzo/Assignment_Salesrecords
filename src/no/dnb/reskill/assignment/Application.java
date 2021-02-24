@@ -5,22 +5,23 @@ import java.util.*;
 
 public class Application implements Usable {
 
+    private Helper helper = new Helper();
+
     private SalesRegistry sr = new SalesRegistry();
     //Ta i mote filnavn og sende over til Marina sin FileReader
 
     public void start () {
 
-        System.out.println("Enter CSV.file name");
-        Scanner scanner = new Scanner(System.in);
-
+        String filename = helper.getString("Enter CSV.file name");
 
         // kanskje vi skal ha en annen lese-inn klasse? Ikke Scanner altså?
-        String filename = scanner.nextLine();
+
         SalesReaderCsv filereader = new SalesReaderCsv(sr);
         try {
-            if(filereader.openFile("SalesRecords.csv")) {
+            if(filereader.openFile(filename)) {
                 filereader.readFile();
-                System.out.println(sr.getStatisticsAsString(StatisticType.NUMBER_OF_ORDERS_BY_REGION));
+                menu();
+
             }
 
         } catch (IOException e) {
@@ -30,17 +31,18 @@ public class Application implements Usable {
 
     }
 
-    public static void name() {
+    public void menu() {
 
         String file;
         int index;
 
         int option = -1;
         do {
+
             try {
                 System.out.println("Options");
-                System.out.println("Menu choice 1");
-                System.out.println("Menu choice 2");
+                System.out.println("Menu choice 1: Number of orders by region");
+                System.out.println("Menu choice 2: ");
                 System.out.println("Menu choice 3");
                 System.out.println("Menu choice 4");
                 System.out.println("Menu choice 5");
@@ -49,51 +51,50 @@ public class Application implements Usable {
                 System.out.println("Menu choice 8");
                 System.out.println("Menu choice 9");
                 System.out.println("10 Quit!");
+                System.out.println("----------------");
+
+                option = helper.getInt("Choose one of the options above: ");
 
                 switch (option) {
 
                     case 1:
-                        if() {
-                        System.out.println("");
-                    }
+                        System.out.println(sr.getStatisticsAsString(StatisticType.NUMBER_OF_ORDERS_BY_REGION));
                         break;
-                        if() {
-                            System.out.println("");
-                        }
+
                     case 2:
-                        if() {
+                        if(false) {
                             System.out.println("");
                         }
                         break;
                     case 3:
-                        if() {
+                        if(false) {
                         System.out.println("");
                     }
                         break;
                     case 4:
-                        if () {
+                        if (false) {
                             System.out.println("");
                         }
                         break;
                     case 5:
-                        if () {
+                        if (false) {
                             System.out.println("");
                         }
                         break;
                     case 6:
-                        if () {
+                        if (false) {
                             System.out.println("");
                         }
                         break;
-                    case 7: if() {
+                    case 7: if(false) {
                         System.out.println("");
                     }
                         break;
-                    case 8: if () {
+                    case 8: if (false) {
                         System.out.println("");
                     }
                         break;
-                    case 9: if() {
+                    case 9: if(false) {
                         System.out.println();
                     }
                         break;
