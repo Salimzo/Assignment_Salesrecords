@@ -10,7 +10,7 @@ import java.io.IOException;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class TestCsvReader {
+public class TestSalesReaderCsv {
 
     @Mock
     SalesReaderCsv mockSalesReaderCsv;
@@ -66,6 +66,8 @@ public class TestCsvReader {
         double expectedTotalProfit = 1468506.02;
         assertEquals(expectedTotalProfit, s.getTotalProfit(), 0);
     }
+
+    //endre navn
 
 
 

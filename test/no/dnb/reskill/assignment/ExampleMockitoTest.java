@@ -3,19 +3,15 @@ package no.dnb.reskill.assignment;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
 
 public class ExampleMockitoTest {
     //@Mock
     //private Interactable userInterface;
 
     @Mock
-    private FileReader fileReader;
+    private FileReaderWriter fileReader;
 
     @Before
     public void setup() {
