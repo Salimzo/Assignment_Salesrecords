@@ -4,7 +4,6 @@ import no.dnb.reskill.assignment.statistics.StatisticType;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.InputMismatchException;
 
 public class Application {
 
