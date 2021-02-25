@@ -79,10 +79,7 @@ public class Application {
                         System.out.println(sr.getStatisticsAsString(StatisticType.NUMBER_OF_ORDERS_BY_ITEMTYPE));
                         break;
                     case 6:
-                        System.out.println("I have stored the global key number in Summary.txt GLOBAL_KEY_NUMBERS");
-                        String data = sr.getStatisticsAsString(StatisticType.GLOBAL_KEY_NUMBERS);
-                        int noOfLines = NUMBER_OF_LINES_IN_SUMMARY;
-                        saveSummary.writeUsingBufferedWriter(data, noOfLines);
+                        exportFileFromMenu();
                         break;
                     case 0:
                 }
@@ -90,6 +87,17 @@ public class Application {
                 System.out.printf("Wrong input.\n%s\n%s\n", e.getMessage(), e.getCause());
             }
         } while (option != 7);
+    }
+
+
+    private void exportFileFromMenu() {
+        String data = sr.getStatisticsAsString(StatisticType.GLOBAL_KEY_NUMBERS);
+        try {
+            String filename = saveSummary.writeUsingBufferedWriter(data);
+            System.out.printf("I have stored the global key numbers to file %s%n", filename);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
 }

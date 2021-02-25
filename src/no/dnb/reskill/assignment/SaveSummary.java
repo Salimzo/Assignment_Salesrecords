@@ -4,31 +4,36 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.Instant;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Formatter;
 
 public class SaveSummary {
 
-    public static void writeUsingBufferedWriter(String data, int noOfLines) {
-        File file = new File("/Users/marinasantoshaugen/Documents/Assignment_Salesrecords/Summary.txt");
-        FileWriter fr = null;
-        BufferedWriter br = null;
-        String dataWithNewLine = data + System.getProperty("line.separator");
-        try{
-            fr = new FileWriter(file);
-            br = new BufferedWriter(fr);
-            for(int i = noOfLines; i>0; i--){
-                br.write(dataWithNewLine);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }finally{
-            try {
-                br.close();
-                fr.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+    public static String writeUsingBufferedWriter(String data) throws IOException  {
+        String filename = createFileWithTimestamp();
+        readToFile(filename, data);
+        return filename;
     }
 
+    private static boolean readToFile(String filename, String content) throws IOException {
+        FileWriter writer = new FileWriter(filename);
+        writer.write(content);
+        writer.close();
+        return true;
+    }
+
+    private static String createFileWithTimestamp() throws IOException {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HHmm");
+        String postfix = LocalTime.now().format(dtf);
+        String filename = String.format("Summary_%s.txt", postfix);
+
+        File file = new File(filename);
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+        return file.getName();
+    }
 
 }

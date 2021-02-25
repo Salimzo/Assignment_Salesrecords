@@ -80,15 +80,15 @@ public class SalesRegistry {
     private List<String> getStatisticsAsArray(StatisticType type) {
         switch (type) {
             case NUMBER_OF_ORDERS_BY_REGION:
-                countSalesIndexContent(regions);
+                countSalesIndexContent(regions, "Orders per region");
                 break;
 
             case NUMBER_OF_ORDERS_BY_COUNTRY:
-                countSalesIndexContent(countries);
+                countSalesIndexContent(countries, "Orders per country");
                 break;
 
             case NUMBER_OF_ORDERS_BY_ITEMTYPE:
-                countSalesIndexContent(itemTypes);
+                countSalesIndexContent(itemTypes, "Orders per item type");
                 break;
 
             case REGIONAL_KEY_NUMBERS:
@@ -111,7 +111,8 @@ public class SalesRegistry {
 
 
 
-    private void countSalesIndexContent(TreeMap<String,ArrayList<Sale>> map) {
+    private void countSalesIndexContent(TreeMap<String,ArrayList<Sale>> map, String title) {
+        stringList.add(String.format("%n------------ %s", title));
         for(Map.Entry<String,ArrayList<Sale>> entry : map.entrySet()) {
             String key = entry.getKey();
             ArrayList<Sale> sales = entry.getValue();
