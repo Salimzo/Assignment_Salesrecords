@@ -6,7 +6,7 @@ import java.util.Collection;
 public class Helper implements UI {
 
     // Create a Scanner object, to get keyboard input.
-    private Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
 
     // Get a String from the user.
     public String getString(String promptMsg) {
@@ -28,9 +28,9 @@ public class Helper implements UI {
 
     // Generic method, displays all the items in a Collection<T>.
     public <T> void displayCollection(Collection<T> list) {
-        System.out.printf("Elements in %s:\n", list.getClass().getName());
+        System.out.printf("Elements in %s:%n", list.getClass().getName());
         for (T element : list) {
-            System.out.printf("  %s value: %s.\n", element.getClass().getName(), element);
+            System.out.printf("  %s value: %s.%n", element.getClass().getName(), element);
         }
     }
 

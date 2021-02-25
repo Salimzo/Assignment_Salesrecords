@@ -1,5 +1,6 @@
 package no.dnb.reskill.assignment;
 
+import no.dnb.reskill.assignment.statistics.StatisticType;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -11,6 +12,17 @@ public class SalesRegistryTest {
     @Before
     public void setup() {
         fixture = new SalesRegistry();
+    }
+
+
+    @Test
+    public void salesRegistry_addSale_shouldReturnTrueOnSuccess() {
+        Sale s = new Sale();
+        s.setRegion("Middle East and North Africa");
+        s.setCountry("Libya");
+        s.setItemType("Cosmetics");
+
+        assertTrue(fixture.addSale(s));
     }
 
     @Test

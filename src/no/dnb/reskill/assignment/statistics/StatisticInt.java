@@ -1,4 +1,4 @@
-package no.dnb.reskill.assignment;
+package no.dnb.reskill.assignment.statistics;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -15,7 +15,9 @@ public class StatisticInt extends Statistic {
     public void add(long valueToAdd) {
         this.value += valueToAdd;
     }
-    public void add(double valueToAdd){}
+    public void add(double valueToAdd){
+        // Unsupported function
+    }
     public double getDoubleValue() {
         return 0;
     }

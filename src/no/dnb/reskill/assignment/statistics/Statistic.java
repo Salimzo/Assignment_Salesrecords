@@ -1,10 +1,8 @@
-package no.dnb.reskill.assignment;
+package no.dnb.reskill.assignment.statistics;
 
 import lombok.Getter;
 import lombok.Setter;
-
-
-
+import no.dnb.reskill.assignment.Sale;
 
 
 @Getter
@@ -15,7 +13,7 @@ public abstract class Statistic {
     protected StatisticGroup groupBy;
 
 
-    public Statistic(StatisticValue statisticValue, StatisticGroup groupBy) {
+    protected Statistic(StatisticValue statisticValue, StatisticGroup groupBy) {
         this.statisticValue = statisticValue;
         this.groupBy = groupBy;
     }
