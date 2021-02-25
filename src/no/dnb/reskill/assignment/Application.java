@@ -33,6 +33,7 @@ public class Application {
             int option = helper.getInt("Choose one of the options above: ");
             if (option<1 || option>7) {
                 System.out.println("Sorry, enter a number between 1 and 7.\n");
+                return -10;
             }
             return option;
         } catch (InputMismatchException e) {
@@ -79,7 +80,7 @@ public class Application {
                         System.out.println(sr.getStatisticsAsString(StatisticType.NUMBER_OF_ORDERS_BY_ITEMTYPE));
                         break;
                     case 6:
-                        System.out.println("I have stored the global key number in Summary.txt GLOBAL_KEY_NUMBERS");
+                        System.out.println("I have stored the global key number in Summary.txt");
                         String data = sr.getStatisticsAsString(StatisticType.GLOBAL_KEY_NUMBERS);
                         int noOfLines = NUMBER_OF_LINES_IN_SUMMARY;
                         saveSummary.writeUsingBufferedWriter(data, noOfLines);
