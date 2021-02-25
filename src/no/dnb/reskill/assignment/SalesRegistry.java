@@ -56,15 +56,15 @@ public class SalesRegistry {
 
 
     public String getStatisticsAsString(StatisticType type) {
-        ArrayList<String> statistics = getStatistics(type);
+        List<String> statistics = getStatistics(type);
         StringBuilder sb = new StringBuilder();
         for ( String s : statistics ) {
-            sb.append(s + "\n");
+            sb.append(String.format("%s %n", s));
         }
         return sb.toString();
     }
 
-    public ArrayList getStatistics(StatisticType type) {
+    public List<String> getStatistics(StatisticType type) {
         ArrayList<String> statistics = new ArrayList<>();
 
         switch (type) {
@@ -86,6 +86,7 @@ public class SalesRegistry {
 
             case COUNTRY_KEY_NUMBERS:
                 extractKeyNumbersFromMapValues(statistics, countries, StatisticGroup.COUNTRY);
+                break;
 
             default:
                 statistics.add("No valid selection. No statistic return");
@@ -111,14 +112,10 @@ public class SalesRegistry {
 
         for(Map.Entry<String,ArrayList<Sale>> entry : map.entrySet()) {
             statisticRegistry = new StatisticRegistry(statisticGroup);
-
             String key = entry.getKey();
-            ArrayList<Sale> sales = entry.getValue();
-            statistics.add(String.format("\n------------ Key numbers for %s:", key));
-            statisticRegistry.evaluateSales(sales);
-            for (String s : statisticRegistry.getStatistics()) {
-                statistics.add(s);
-            }
+            statisticRegistry.evaluateSales(entry.getValue());
+            statistics.add(String.format("%n------------ Key numbers for %s:", key));
+            statistics.addAll(statisticRegistry.getStatistics());
         }
     }
 
