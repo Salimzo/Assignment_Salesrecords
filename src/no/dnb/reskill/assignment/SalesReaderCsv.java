@@ -3,8 +3,9 @@ package no.dnb.reskill.assignment;
 import java.io.*;
 import java.text.ParseException;
 
-public class SalesReaderCsv implements FileReaderWriter {
+public class SalesReaderCsv implements ReadsAllFiles {
 
+    public static final int NUMBER_OF_COLUMNS_IN_FILE = 14;
     SalesRegistry sales;
     BufferedReader br;
     private int lineCount;
@@ -44,21 +45,10 @@ public class SalesReaderCsv implements FileReaderWriter {
         }
     }
 
-    @Override
-    public boolean writeFile(String newFileName) throws IOException {
-        PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(newFileName)));
-        return false;
-    }
-
-    /**
-     * This method converts from a array of Strings to a Sale object
-     * @param line is a String with each sale split by ","
-     * @return Sale object
-     */
     public static Sale createSaleFromCSVLine(String line) throws ParseException{
         try {
             String[] csvLineValues = line.split(",");
-            if (csvLineValues.length != 14) {
+            if (csvLineValues.length != NUMBER_OF_COLUMNS_IN_FILE) {
                 throw new ParseException("Something is wrong with the data file.", -1);
             }
             Sale s = new Sale();

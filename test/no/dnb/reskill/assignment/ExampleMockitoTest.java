@@ -11,7 +11,7 @@ public class ExampleMockitoTest {
     //private Interactable userInterface;
 
     @Mock
-    private FileReaderWriter fileReader;
+    private ReadsAllFiles fileReader;
 
     @Before
     public void setup() {
