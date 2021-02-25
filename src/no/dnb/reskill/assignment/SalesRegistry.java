@@ -8,6 +8,7 @@ import no.dnb.reskill.assignment.statistics.StatisticType;
 
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -16,15 +17,14 @@ import java.util.TreeMap;
 
 
 public class SalesRegistry {
-    private ArrayList<Sale> allSales = new ArrayList<>();
-    private TreeMap<String, ArrayList<Sale>> regions = new TreeMap<>();
-    private TreeMap<String, ArrayList<Sale>> countries = new TreeMap<>();
-    private TreeMap<String, ArrayList<Sale>> itemTypes = new TreeMap<>();
-    private StatisticRegistry statisticRegistry;
+    private final ArrayList<Sale> allSales = new ArrayList<>();
+    private final TreeMap<String, ArrayList<Sale>> regions = new TreeMap<>();
+    private final TreeMap<String, ArrayList<Sale>> countries = new TreeMap<>();
+    private final TreeMap<String, ArrayList<Sale>> itemTypes = new TreeMap<>();
 
     /**
      * Adds a Sale object to the array list containing all sales.
-     * @param sale
+     * @param sale A fully implemented Sale object
      * @return true (as specified by ArrayList.add)
      */
     public boolean addSale(Sale sale) {
@@ -32,19 +32,23 @@ public class SalesRegistry {
         return allSales.add(sale);
     }
 
-    public ArrayList getSales() {
+    /**
+     *
+     * @return List of all Sale objects stored in SalesRegistry
+     */
+    public List<Sale> getSales() {
         return allSales;
     }
 
-    public ArrayList getSales_byRegion(String region) {
+    public List<Sale> getSalesByRegion(String region) {
         return regions.get(region);
     }
 
-    public ArrayList getSales_byCountry(String country) {
+    public List<Sale> getSalesByCountry(String country) {
         return countries.get(country);
     }
 
-    public ArrayList getSales_byItemType(String itemType) {
+    public List<Sale> getSalesByItemType(String itemType) {
         return itemTypes.get(itemType);
     }
 
@@ -103,6 +107,8 @@ public class SalesRegistry {
 
 
     private void extractKeyNumbersFromMapValues(ArrayList<String> statistics, TreeMap<String,ArrayList<Sale>> map, StatisticGroup statisticGroup) {
+        StatisticRegistry statisticRegistry;
+
         for(Map.Entry<String,ArrayList<Sale>> entry : map.entrySet()) {
             statisticRegistry = new StatisticRegistry(statisticGroup);
 

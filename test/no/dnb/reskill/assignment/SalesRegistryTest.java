@@ -14,6 +14,17 @@ public class SalesRegistryTest {
         fixture = new SalesRegistry();
     }
 
+
+    @Test
+    public void salesRegistry_addSale_shouldReturnTrueOnSuccess() {
+        Sale s = new Sale();
+        s.setRegion("Middle East and North Africa");
+        s.setCountry("Libya");
+        s.setItemType("Cosmetics");
+
+        assertTrue(fixture.addSale(s));
+    }
+
     @Test
     public void salesRegistry_addingOneSale_shouldReturnArraysOfSize1() {
         // Arrange
