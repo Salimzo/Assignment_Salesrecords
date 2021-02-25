@@ -40,11 +40,24 @@ public class TestApplication {
         verify(mockHelper).getString("Enter CSV.file name");
     }
 
-    @Test (expected=IOException.class)
+    /*
+    @Test (expected = IOException.class)
     public void getFileNameFromUser_wrongUserInput_exceptionOccurs() {
         when(mockHelper.getString("Enter CSV.file name")).thenReturn("Sales.csb");
         fixture.getFileNameFromUser();
     }
+     */
+
+    public void menu_xxx_xxx() {
+
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void menu_userInputsWrongOption_throwsException() {
+        when(mockHelper.getInt("Choose one of the options above: ")).thenReturn(14);
+    }
+
+
 
 
 
