@@ -33,9 +33,10 @@ public class Application {
             int option = helper.getInt("Choose one of the options above: ");
             if (option<1 || option>7) {
                 System.out.println("Sorry, enter a number between 1 and 7.\n");
+                return -10;
             }
             return option;
-        } catch (InputMismatchException e) {
+        } catch (NumberFormatException e) {
             System.out.println("Sorry, enter an integer.");
         }
         return 7;

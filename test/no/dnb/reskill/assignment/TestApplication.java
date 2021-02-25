@@ -5,12 +5,8 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.InputMismatchException;
-
-import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -40,16 +36,6 @@ public class TestApplication {
         verify(mockHelper).getString("Enter CSV.file name");
     }
 
-
-
-    /*
-    @Test (expected = IOException.class)
-    public void getFileNameFromUser_wrongUserInput_exceptionOccurs() {
-        when(mockHelper.getString("Enter CSV.file name")).thenReturn("Sales.csb");
-        fixture.getFileNameFromUser();
-    }
-     */
-
     @Test
     public void getAndValidateOptionFromUser_userInputsCorrect_returnInteger() {
         when(mockHelper.getInt("Choose one of the options above: ")).thenReturn(4);
@@ -57,13 +43,14 @@ public class TestApplication {
         verify(mockHelper).getInt("Choose one of the options above: ");
     }
 
-    @Test (expected = IllegalArgumentException.class)
-    public void getAndValidateOptionFromUser_integerOverSeven_throwsException() {
+    @Test
+    public void getAndValidateOptionFromUser_integerOverSeven_retJippiiiurnMinusTen() {
         when(mockHelper.getInt("Choose one of the options above: ")).thenReturn(14);
-        fixture.getAndValidateOptionFromUser();
+        assertEquals(fixture.getAndValidateOptionFromUser(),-10);
+        verify(mockHelper).getInt("Choose one of the options above: ");
     }
 
-    @Test (expected = InputMismatchException.class)
+    @Test (expected = NumberFormatException.class)
     public void getAndValidateOptionFromUser_notAnInteger_throwsException() {
         when(mockHelper.getInt("Choose one of the options above: ")).thenReturn(Integer.valueOf("X"));
         fixture.getAndValidateOptionFromUser();
