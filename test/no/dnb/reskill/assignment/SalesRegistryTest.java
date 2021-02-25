@@ -89,7 +89,7 @@ public class SalesRegistryTest {
 
         // Assert
         System.out.println(fixture.getStatisticsAsString(StatisticType.NUMBER_OF_ORDERS_BY_REGION));
-        assertTrue(false);
+        fail();
     }
 
 

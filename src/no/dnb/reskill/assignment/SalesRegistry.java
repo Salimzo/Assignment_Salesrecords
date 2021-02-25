@@ -130,13 +130,12 @@ public class SalesRegistry {
         updateTreeMap(itemTypes, sale.getItemType(), sale);
     }
 
+
     private void updateTreeMap(TreeMap<String, ArrayList<Sale>> treeMap, String key, Sale sale) {
         if (!treeMap.containsKey(key)) {
             treeMap.put(key, new ArrayList<>());
         }
         treeMap.get(key).add(sale);
     }
-
-
 
 }
