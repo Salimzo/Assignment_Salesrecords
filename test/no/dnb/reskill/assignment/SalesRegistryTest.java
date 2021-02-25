@@ -38,9 +38,9 @@ public class SalesRegistryTest {
 
         // Assert
         boolean actual = fixture.getSales().size() == 1
-                && fixture.getSales_byRegion("Middle East and North Africa").size() == 1
-                && fixture.getSales_byCountry("Libya").size() == 1
-                && fixture.getSales_byItemType("Cosmetics").size() == 1;
+                && fixture.getSalesByRegion("Middle East and North Africa").size() == 1
+                && fixture.getSalesByCountry("Libya").size() == 1
+                && fixture.getSalesByItemType("Cosmetics").size() == 1;
         assertTrue(actual);
     }
 
@@ -62,11 +62,11 @@ public class SalesRegistryTest {
 
         // Assert
         boolean actual = fixture.getSales().size() == 2
-                && fixture.getSales_byRegion("Middle East and North Africa").size() == 2
-                && fixture.getSales_byCountry("Libya").size() == 1
-                && fixture.getSales_byCountry("Algeria").size() == 1
-                && fixture.getSales_byItemType("Cosmetics").size() == 1
-                && fixture.getSales_byItemType("Personal Care").size() == 1;
+                && fixture.getSalesByRegion("Middle East and North Africa").size() == 2
+                && fixture.getSalesByCountry("Libya").size() == 1
+                && fixture.getSalesByCountry("Algeria").size() == 1
+                && fixture.getSalesByItemType("Cosmetics").size() == 1
+                && fixture.getSalesByItemType("Personal Care").size() == 1;
         assertTrue(actual);
     }
 

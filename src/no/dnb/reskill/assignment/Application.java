@@ -4,6 +4,7 @@ import no.dnb.reskill.assignment.statistics.StatisticType;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.ParseException;
 
 public class Application implements Usable {
 
@@ -23,7 +24,6 @@ public class Application implements Usable {
             menu();
         } catch (FileNotFoundException e) {
             System.out.println("Can't find file, sorry pal.");
-
         } catch (IOException e) {
             System.out.println("Can't read file, sorry pal.");
         }
