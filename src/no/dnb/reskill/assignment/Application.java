@@ -9,6 +9,7 @@ public class Application implements Usable {
 
     private UI helper = new Helper();
     private SalesRegistry sr = new SalesRegistry();
+    private SalesReaderCsv fileReader;
 
     public String getFileNameFromUser() {
         return "SalesRecords.csv";
@@ -17,7 +18,7 @@ public class Application implements Usable {
 
     public void start() {
         try {
-            SalesReaderCsv fileReader = new SalesReaderCsv(sr, getFileNameFromUser());
+            fileReader = new SalesReaderCsv(sr, getFileNameFromUser());
             System.out.println(fileReader.getLineCount());
             menu();
         } catch (FileNotFoundException e) {
@@ -63,7 +64,8 @@ public class Application implements Usable {
                         System.out.println(sr.getStatisticsAsString(StatisticType.NUMBER_OF_ORDERS_BY_ITEMTYPE));
                         break;
                     case 6:
-                        //System.out.println(insert method to write to file...........);
+                        fileReader.writeFile()
+                        System.out.println(insert method to write to file...........);
                 }
             } catch (Exception e) {
                 System.out.printf("Wrong input.\n%s\n%s\n", e.getMessage(), e.getCause());
