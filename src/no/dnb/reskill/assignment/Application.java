@@ -4,6 +4,7 @@ import no.dnb.reskill.assignment.statistics.StatisticType;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.InputMismatchException;
 
 public class Application {
 
@@ -25,15 +26,16 @@ public class Application {
         System.out.println("Menu choice 6: Write to file");
         System.out.println("Menu choice 7: Quit program");
         System.out.println("------------------------------------------");
-        int option = helper.getInt("Choose one of the options above: ");
-
-        if (option<1 || option>7) {
-            throw new IllegalArgumentException("Sorry, enter a number between 1 and 7.\n");
+        try {
+            int option = helper.getInt("Choose one of the options above: ");
+            if (option<1 || option>7) {
+                System.out.println("Sorry, enter a number between 1 and 7.\n");
+            }
+            return option;
+        } catch (InputMismatchException e) {
+            System.out.println("Sorry, enter an integer.");
         }
-        else if (helper.isStringInt(option)) {
-            throw new IllegalArgumentException("Sorry, enter an integer.\n");
-        }
-        return option;
+        return 7;
     }
 
 
@@ -77,6 +79,7 @@ public class Application {
                         //fileReader.writeFile("Summary.csv");
                         //System.out.println(insert method to write to file...........);
                         break;
+                    case 0:
                 }
             } catch (IllegalArgumentException e) {
                 System.out.printf("Wrong input.\n%s\n%s\n", e.getMessage(), e.getCause());

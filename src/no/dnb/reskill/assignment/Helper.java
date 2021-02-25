@@ -34,18 +34,4 @@ public class Helper implements UI {
         }
     }
 
-    @Override
-    public boolean isStringInt(int option) {
-        return false;
-    }
-
-    public boolean isStringInt(String s) {
-        try {
-            Integer.parseInt(s);
-            return true;
-        } catch (NumberFormatException ex) {
-            return false;
-        }
-    }
-
 }

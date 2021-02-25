@@ -29,6 +29,7 @@ public class TestSalesReaderCsv {
         salesReaderCsv.openFile("NotExistingFile.csv");
     }
 
+
     @Test
     public void openFile_existingFile_returnTrue() throws FileNotFoundException {
         assertTrue(salesReaderCsv.openFile("SalesRecords.csv"));

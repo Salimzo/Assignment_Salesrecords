@@ -40,6 +40,8 @@ public class TestApplication {
         verify(mockHelper).getString("Enter CSV.file name");
     }
 
+
+
     /*
     @Test (expected = IOException.class)
     public void getFileNameFromUser_wrongUserInput_exceptionOccurs() {
