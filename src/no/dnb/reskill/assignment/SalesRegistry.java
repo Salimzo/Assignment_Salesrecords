@@ -112,7 +112,7 @@ public class SalesRegistry {
 
 
     private void countSalesIndexContent(TreeMap<String,ArrayList<Sale>> map, String title) {
-        stringList.add(String.format("%n------------ %s", title));
+        stringList.add(String.format("%n<<<< %s >>>>", title));
         for(Map.Entry<String,ArrayList<Sale>> entry : map.entrySet()) {
             String key = entry.getKey();
             ArrayList<Sale> sales = entry.getValue();
@@ -131,7 +131,7 @@ public class SalesRegistry {
 
     private void analyzeKeyNumbersFromArrayList(ArrayList<Sale> sales, StatisticGroup statisticGroup, String title) {
         StatisticRegistry statisticRegistry = new StatisticRegistry(statisticGroup);
-        stringList.add(String.format("%n------------ %s", title));
+        stringList.add(String.format("%n<<<< %s >>>>", title));
         stringList.addAll(statisticRegistry.createStatisticsFromSales(sales));
     }
 

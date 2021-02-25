@@ -20,14 +20,15 @@ public class Application {
     }
 
     public int getAndValidateOptionFromUser() {
-        System.out.println("Options");
-        System.out.println("Menu choice 1: Number of orders by region");
-        System.out.println("Menu choice 2: Regional key numbers");
-        System.out.println("Menu choice 3: Number of orders by country");
-        System.out.println("Menu choice 4: Country key numbers");
-        System.out.println("Menu choice 5: Item key numbers");
-        System.out.println("Menu choice 6: Write to file");
-        System.out.println("Menu choice 7: Quit program");
+        System.out.println("------------------------------------------");
+        System.out.println("| Queen & Kings menu:");
+        System.out.println("| 1: Number of orders by region");
+        System.out.println("| 2: Regional key numbers");
+        System.out.println("| 3: Number of orders by country");
+        System.out.println("| 4: Country key numbers");
+        System.out.println("| 5: Item key numbers");
+        System.out.println("| 6: Write to file");
+        System.out.println("| 7: Quit program");
         System.out.println("------------------------------------------");
         try {
             int option = helper.getInt("Choose one of the options above: ");
