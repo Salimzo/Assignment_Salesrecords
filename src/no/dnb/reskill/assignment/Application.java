@@ -11,6 +11,7 @@ public class Application {
     private UI helper = new Helper();
     private SalesRegistry sr = new SalesRegistry();
     private SalesReaderCsv fileReader;
+    private SaveSummary saveSummary;
 
     public String getFileNameFromUser() {
         return helper.getString("Enter CSV.file name");
@@ -20,8 +21,8 @@ public class Application {
         System.out.println("Options");
         System.out.println("Menu choice 1: Number of orders by region");
         System.out.println("Menu choice 2: Regional key numbers");
-        System.out.println("Menu choice 3: Country key numbers");
-        System.out.println("Menu choice 4: Summary information");
+        System.out.println("Menu choice 3: Number of orders by country");
+        System.out.println("Menu choice 4: Country key numbers");
         System.out.println("Menu choice 5: Item key numbers");
         System.out.println("Menu choice 6: Write to file");
         System.out.println("Menu choice 7: Quit program");
@@ -64,20 +65,22 @@ public class Application {
                         System.out.println(sr.getStatisticsAsString(StatisticType.NUMBER_OF_ORDERS_BY_REGION));
                         break;
                     case 2:
-                        System.out.println(sr.getStatisticsAsString(StatisticType.REGIONAL_KEY_NUMBERS) );
+                        System.out.println(sr.getStatisticsAsString(StatisticType.REGIONAL_KEY_NUMBERS));
                         break;
                     case 3:
                         System.out.println(sr.getStatisticsAsString(StatisticType.NUMBER_OF_ORDERS_BY_COUNTRY));
                         break;
                     case 4:
-                        System.out.println(sr.getStatisticsAsString(StatisticType.COUNTRY_KEY_NUMBERS) );
+                        System.out.println(sr.getStatisticsAsString(StatisticType.COUNTRY_KEY_NUMBERS));
                         break;
                     case 5:
                         System.out.println(sr.getStatisticsAsString(StatisticType.NUMBER_OF_ORDERS_BY_ITEMTYPE));
                         break;
                     case 6:
-                        //fileReader.writeFile("Summary.csv");
-                        //System.out.println(insert method to write to file...........);
+                        System.out.println("I have stored the global key number in Summary.txt GLOBAL_KEY_NUMBERS");
+                        String data = sr.getStatisticsAsString(StatisticType.GLOBAL_KEY_NUMBERS);
+                        int noOfLines = 10;
+                        saveSummary.writeUsingBufferedWriter(data, noOfLines);
                         break;
                     case 0:
                 }
