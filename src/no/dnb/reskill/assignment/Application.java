@@ -1,5 +1,7 @@
 package no.dnb.reskill.assignment;
 
+import no.dnb.reskill.assignment.statistics.StatisticType;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 

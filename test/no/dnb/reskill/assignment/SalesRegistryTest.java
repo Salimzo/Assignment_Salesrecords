@@ -1,5 +1,6 @@
 package no.dnb.reskill.assignment;
 
+import no.dnb.reskill.assignment.statistics.StatisticType;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;

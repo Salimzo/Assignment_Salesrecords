@@ -1,8 +1,13 @@
 package no.dnb.reskill.assignment;
 
 
+import no.dnb.reskill.assignment.statistics.StatisticGroup;
+import no.dnb.reskill.assignment.statistics.StatisticRegistry;
+import no.dnb.reskill.assignment.statistics.StatisticType;
+
+
+
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 

@@ -1,35 +1,11 @@
-package no.dnb.reskill.assignment;
+package no.dnb.reskill.assignment.statistics;
+
+import no.dnb.reskill.assignment.Sale;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-
-enum StatisticType {
-    NUMBER_OF_ORDERS_BY_REGION,
-    NUMBER_OF_ORDERS_BY_COUNTRY,
-    NUMBER_OF_ORDERS_BY_ITEMTYPE,
-    REGIONAL_KEY_NUMBERS,
-    COUNTRY_KEY_NUMBERS,
-}
-
-enum StatisticGroup {
-    REGION,
-    COUNTRY,
-    ITEM_TYPE
-}
-
-enum StatisticValue {
-    TOTAL_COUNT,
-    OVERALL_PROFIT,
-    MOST_PROFITABLE,
-    LEAST_PROFITABLE,
-    AVERAGE_PROFIT,
-    TOTAL_UNITS_SOLD,
-    MOST_UNITS_SOLD,
-    LEAST_UNITS_SOLD
-}
 
 
 public class StatisticRegistry {

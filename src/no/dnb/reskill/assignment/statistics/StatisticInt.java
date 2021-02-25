@@ -1,4 +1,4 @@
-package no.dnb.reskill.assignment;
+package no.dnb.reskill.assignment.statistics;
 
 import lombok.Getter;
 import lombok.Setter;

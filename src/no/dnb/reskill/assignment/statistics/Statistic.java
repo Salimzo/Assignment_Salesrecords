@@ -1,10 +1,8 @@
-package no.dnb.reskill.assignment;
+package no.dnb.reskill.assignment.statistics;
 
 import lombok.Getter;
 import lombok.Setter;
-
-
-
+import no.dnb.reskill.assignment.Sale;
 
 
 @Getter
