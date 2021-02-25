@@ -64,76 +64,116 @@ public class StatisticRegistry {
 
     private void analyzeSale(Sale sale) {
         for (Map.Entry<StatisticValue, Statistic> entry : statisticStorage.entrySet()) {
-            StatisticValue key = entry.getKey();
-            Statistic value = entry.getValue();
-
-            switch (key) {
+            switch (entry.getKey()) {
                 case OVERALL_PROFIT:
-                    if (value == null) {
-                        entry.setValue(new StatisticDouble(key, this.groupBy));
-                    }
-                    entry.getValue().add(sale.getTotalProfit());
+                    summarizeOverallProfit(entry, sale);
                     break;
                 case MOST_PROFITABLE:
-                    if (value == null) {
-                        StatisticDouble sd = new StatisticDouble(key, this.groupBy );
-                        sd.setSale(sale);
-                        entry.setValue(sd);
-                    }
-                    else {
-                        if (sale.getTotalProfit() > value.getSale().getTotalProfit()) {
-                            entry.getValue().setSale(sale);
-                        }
-                    }
+                    compareMostProfitable(entry, sale);
                     break;
 
                 case LEAST_PROFITABLE:
-                    if (value == null) {
-                        StatisticDouble sd = new StatisticDouble(key, this.groupBy );
-                        sd.setSale(sale);
-                        entry.setValue(sd);
-                    }
-                    else {
-                        if (sale.getTotalProfit() < value.getSale().getTotalProfit()) {
-                            entry.getValue().setSale(sale);
-                        }
-                    }
+                    compareLeastProfitable(entry, sale);
                     break;
 
                 case TOTAL_UNITS_SOLD:
-                    if (value == null) {
-                        entry.setValue(new StatisticInt(key, this.groupBy));
-                    }
-                    entry.getValue().add(sale.getUnitsSold());
+                    summarizeTotalUnitsSold(entry, sale);
                     break;
 
                 case MOST_UNITS_SOLD:
-                    if (value == null) {
-                        StatisticInt si = new StatisticInt(key, this.groupBy );
-                        si.setSale(sale);
-                        entry.setValue(si);
-                    }
-                    else {
-                        if (sale.getUnitsSold() > value.getSale().getUnitsSold()) {
-                            entry.getValue().setSale(sale);
-                        }
-                    }
+                    compareMostUnitsSold(entry, sale);
                     break;
 
                 case LEAST_UNITS_SOLD:
-                    if (value == null) {
-                        StatisticInt si = new StatisticInt(key, this.groupBy );
-                        si.setSale(sale);
-                        entry.setValue(si);
-                    }
-                    else {
-                        if (sale.getUnitsSold() < value.getSale().getUnitsSold()) {
-                            entry.getValue().setSale(sale);
-                        }
-                    }
+                    compareLeastUnitsSold(entry, sale);
                     break;
                 default:
 
+            }
+        }
+    }
+
+    private void summarizeOverallProfit(Map.Entry<StatisticValue, Statistic> entry, Sale sale) {
+        StatisticValue key = entry.getKey();
+        Statistic value = entry.getValue();
+
+        if (value == null) {
+            entry.setValue(new StatisticDouble(key, this.groupBy));
+        }
+        entry.getValue().add(sale.getTotalProfit());
+
+    }
+
+    private void compareMostProfitable(Map.Entry<StatisticValue, Statistic> entry, Sale sale) {
+        StatisticValue key = entry.getKey();
+        Statistic value = entry.getValue();
+
+        if (value == null) {
+            StatisticDouble sd = new StatisticDouble(key, this.groupBy );
+            sd.setSale(sale);
+            entry.setValue(sd);
+        }
+        else {
+            if (sale.getTotalProfit() > value.getSale().getTotalProfit()) {
+                entry.getValue().setSale(sale);
+            }
+        }
+    }
+
+    private void compareLeastProfitable(Map.Entry<StatisticValue, Statistic> entry, Sale sale) {
+        StatisticValue key = entry.getKey();
+        Statistic value = entry.getValue();
+
+        if (value == null) {
+            StatisticDouble sd = new StatisticDouble(key, this.groupBy );
+            sd.setSale(sale);
+            entry.setValue(sd);
+        }
+        else {
+            if (sale.getTotalProfit() < value.getSale().getTotalProfit()) {
+                entry.getValue().setSale(sale);
+            }
+        }
+    }
+
+    private void summarizeTotalUnitsSold(Map.Entry<StatisticValue, Statistic> entry, Sale sale) {
+        StatisticValue key = entry.getKey();
+        Statistic value = entry.getValue();
+
+        if (value == null) {
+            entry.setValue(new StatisticInt(key, this.groupBy));
+        }
+        entry.getValue().add(sale.getUnitsSold());
+    }
+
+    private void compareMostUnitsSold(Map.Entry<StatisticValue, Statistic> entry, Sale sale) {
+        StatisticValue key = entry.getKey();
+        Statistic value = entry.getValue();
+
+        if (value == null) {
+            StatisticInt si = new StatisticInt(key, this.groupBy );
+            si.setSale(sale);
+            entry.setValue(si);
+        }
+        else {
+            if (sale.getUnitsSold() > value.getSale().getUnitsSold()) {
+                entry.getValue().setSale(sale);
+            }
+        }
+    }
+
+    private void compareLeastUnitsSold(Map.Entry<StatisticValue, Statistic> entry, Sale sale ) {
+        StatisticValue key = entry.getKey();
+        Statistic value = entry.getValue();
+
+        if (value == null) {
+            StatisticInt si = new StatisticInt(key, this.groupBy );
+            si.setSale(sale);
+            entry.setValue(si);
+        }
+        else {
+            if (sale.getUnitsSold() < value.getSale().getUnitsSold()) {
+                entry.getValue().setSale(sale);
             }
         }
     }

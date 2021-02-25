@@ -88,8 +88,11 @@ public class SalesRegistryTest {
         fixture.addSale(s2);
 
         // Assert
-        System.out.println(fixture.getStatisticsAsString(StatisticType.NUMBER_OF_ORDERS_BY_REGION));
-        fail();
+        String expected = String.format("%n" +
+                "<<<< Orders per region >>>> %n" +
+                "Middle East and North Africa: 2 orders %n");
+        String actual = fixture.getStatisticsAsString(StatisticType.NUMBER_OF_ORDERS_BY_REGION);
+        assertEquals(expected, actual);
     }
 
 
