@@ -4,13 +4,14 @@ import no.dnb.reskill.assignment.Sale;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 
 
 public class StatisticRegistry {
-    private StatisticGroup groupBy;
-    private LinkedHashMap<StatisticValue, Statistic> statisticStorage;
+    private final StatisticGroup groupBy;
+    private final LinkedHashMap<StatisticValue, Statistic> statisticStorage;
 
 
     public StatisticRegistry(StatisticGroup groupBy) {
@@ -28,7 +29,7 @@ public class StatisticRegistry {
     }
 
 
-    public void evaluateSales(ArrayList<Sale> sales) {
+    public void evaluateSales(List<Sale> sales) {
         for (Sale sale : sales) {
             evaluateSale(sale);
         }
@@ -117,13 +118,15 @@ public class StatisticRegistry {
                         }
                     }
                     break;
+                default:
+
             }
         }
     }
 
 
 
-    public ArrayList<String> getStatistics() {
+    public List<String> getStatistics() {
         ArrayList<String> list = new ArrayList<>();
 
         for (Map.Entry<StatisticValue, Statistic> entry : statisticStorage.entrySet()) {
@@ -132,7 +135,6 @@ public class StatisticRegistry {
                 list.add(statistic.toString());
             }
         }
-
         return list;
     }
 

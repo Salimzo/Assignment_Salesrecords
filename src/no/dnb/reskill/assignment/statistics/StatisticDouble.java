@@ -12,14 +12,18 @@ public class StatisticDouble extends Statistic {
         super(statisticValue, groupBy);
     }
 
-    public void add(long valueToAdd) {}
+    public void add(long valueToAdd) {
+        // Unsupported function
+    }
     public void add(double valueToAdd) {
         value += valueToAdd;
     }
     public double getDoubleValue() {
         return value;
     }
-    public long getIntValue() { return 0; }
+    public long getIntValue() {
+        return 0;
+    }
 
 
     @Override

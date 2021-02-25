@@ -15,7 +15,9 @@ public class StatisticInt extends Statistic {
     public void add(long valueToAdd) {
         this.value += valueToAdd;
     }
-    public void add(double valueToAdd){}
+    public void add(double valueToAdd){
+        // Unsupported function
+    }
     public double getDoubleValue() {
         return 0;
     }

@@ -1,6 +1,6 @@
 package no.dnb.reskill.assignment.statistics;
 
-public enum StatisticValue {
+enum StatisticValue {
     TOTAL_COUNT,
     OVERALL_PROFIT,
     MOST_PROFITABLE,

@@ -13,7 +13,7 @@ public abstract class Statistic {
     protected StatisticGroup groupBy;
 
 
-    public Statistic(StatisticValue statisticValue, StatisticGroup groupBy) {
+    protected Statistic(StatisticValue statisticValue, StatisticGroup groupBy) {
         this.statisticValue = statisticValue;
         this.groupBy = groupBy;
     }
