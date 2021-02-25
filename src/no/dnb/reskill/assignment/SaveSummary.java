@@ -11,7 +11,7 @@ public class SaveSummary {
         File file = new File("/Users/marinasantoshaugen/Documents/Assignment_Salesrecords/Summary.txt");
         FileWriter fr = null;
         BufferedWriter br = null;
-        String dataWithNewLine=data+System.getProperty("line.separator");
+        String dataWithNewLine = data + System.getProperty("line.separator");
         try{
             fr = new FileWriter(file);
             br = new BufferedWriter(fr);

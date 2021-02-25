@@ -8,6 +8,8 @@ import java.util.InputMismatchException;
 
 public class Application {
 
+    private static final int NUMBER_OF_LINES_IN_SUMMARY = 10;
+
     private UI helper = new Helper();
     private SalesRegistry sr = new SalesRegistry();
     private SalesReaderCsv fileReader;
@@ -79,7 +81,7 @@ public class Application {
                     case 6:
                         System.out.println("I have stored the global key number in Summary.txt GLOBAL_KEY_NUMBERS");
                         String data = sr.getStatisticsAsString(StatisticType.GLOBAL_KEY_NUMBERS);
-                        int noOfLines = 10;
+                        int noOfLines = NUMBER_OF_LINES_IN_SUMMARY;
                         saveSummary.writeUsingBufferedWriter(data, noOfLines);
                         break;
                     case 0:
