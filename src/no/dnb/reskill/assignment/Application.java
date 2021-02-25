@@ -37,7 +37,8 @@ public class Application implements Usable {
                 System.out.println("Menu choice 3: Country key numbers");
                 System.out.println("Menu choice 4: Summary information");
                 System.out.println("Menu choice 5: Item key numbers");
-                System.out.println("6 Quit!");
+                System.out.println("Menu choice 6: Write to file");
+                System.out.println("Menu choice 7: Quit program");
                 System.out.println("------------------------------------------");
 
                 option = helper.getInt("Choose one of the options above: ");
@@ -55,16 +56,17 @@ public class Application implements Usable {
                         break;
                     case 4:
                         System.out.println(sr.getStatisticsAsString(StatisticType.COUNTRY_KEY_NUMBERS) );
-                        //System.out.println(sr.getStatisticsAsString(StatisticType.XXXXXXXXXXXXX));
                         break;
                     case 5:
                         System.out.println(sr.getStatisticsAsString(StatisticType.NUMBER_OF_ORDERS_BY_ITEMTYPE));
                         break;
+                    case 6:
+                        //System.out.println(...........);
                 }
             } catch (Exception e) {
                 System.out.printf("Wrong input.\n%s\n%s\n", e.getMessage(), e.getCause());
             }
-        } while (option != 6);
+        } while (option != 7);
     }
 
 }
