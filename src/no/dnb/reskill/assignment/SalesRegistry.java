@@ -80,6 +80,10 @@ public class SalesRegistry {
                 countSizeOfTreeMapValues(statistics, itemTypes);
                 break;
 
+            case GLOBAL_KEY_NUMBERS:
+                testingSomething(statistics, StatisticGroup.GLOBAL, "Global key numbers", allSales);
+                break;
+
             case REGIONAL_KEY_NUMBERS:
                 extractKeyNumbersFromMapValues(statistics, regions, StatisticGroup.REGION);
                 break;
@@ -108,16 +112,21 @@ public class SalesRegistry {
 
 
     private void extractKeyNumbersFromMapValues(ArrayList<String> statistics, TreeMap<String,ArrayList<Sale>> map, StatisticGroup statisticGroup) {
-        StatisticRegistry statisticRegistry;
-
         for(Map.Entry<String,ArrayList<Sale>> entry : map.entrySet()) {
-            statisticRegistry = new StatisticRegistry(statisticGroup);
-            String key = entry.getKey();
-            statisticRegistry.evaluateSales(entry.getValue());
-            statistics.add(String.format("%n------------ Key numbers for %s:", key));
-            statistics.addAll(statisticRegistry.getStatistics());
+            String title = String.format("%n------------ Key numbers for %s:", entry.getKey());
+            testingSomething(statistics, statisticGroup, title, entry.getValue());
         }
     }
+
+    private void testingSomething(ArrayList<String> statistics, StatisticGroup statisticGroup, String statisticTitle, ArrayList<Sale> sales) {
+        StatisticRegistry statisticRegistry = new StatisticRegistry(statisticGroup);
+        statisticRegistry.evaluateSales(sales);
+        statistics.add(statisticTitle);
+        statistics.addAll(statisticRegistry.getStatistics());
+    }
+
+
+
 
 
 
