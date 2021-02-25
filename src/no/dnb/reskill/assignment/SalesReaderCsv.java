@@ -6,11 +6,12 @@ public class SalesReaderCsv implements FileReaderWriter {
 
     SalesRegistry sales;
     BufferedReader br;
+    private int lineCount;
 
     public SalesReaderCsv(SalesRegistry sales, String fileName) throws FileNotFoundException, IOException {
         this.sales = sales;
         openFile(fileName);
-        readFile();
+        lineCount = readFile();
     }
 
     @Override
@@ -19,19 +20,23 @@ public class SalesReaderCsv implements FileReaderWriter {
             return true;
     }
 
+    public int getLineCount() {
+        return lineCount;
+    }
+
     @Override
      public int readFile() throws IOException {
         br.readLine();
         try {
             String line;
-            int count = 1;
+            int lineCount = 0;
             while ((line = br.readLine()) != null) {
                 String[] attributes = line.split(",");
                 Sale sale = createSaleFromCSVLine(attributes);
                 sales.addSale(sale);
-                count++;
+                lineCount++;
             }
-            return count;
+            return lineCount;
         } catch (IOException e) {
             throw e;
         }

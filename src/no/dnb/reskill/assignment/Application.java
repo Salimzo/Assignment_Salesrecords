@@ -16,12 +16,14 @@ public class Application implements Usable {
     public void start() {
         try {
             SalesReaderCsv fileReader = new SalesReaderCsv(sr, getFileNameFromUser());
+            System.out.println(fileReader.getLineCount());
+            menu();
         } catch (FileNotFoundException e) {
             System.out.println("Can't find file, sorry pal.");
+
         } catch (IOException e) {
             System.out.println("Can't read file, sorry pal.");
         }
-        menu();
     }
 
 

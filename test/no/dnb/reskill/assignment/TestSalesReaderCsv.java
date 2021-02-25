@@ -42,21 +42,21 @@ public class TestSalesReaderCsv {
     public void readFile_readsFileOneLine_counterOne() throws IOException {
         salesRegistry1 = new SalesRegistry();
         readerOneLine = new SalesReaderCsv(salesRegistry1, "FileOneLine.csv");
-        assertThat(readerOneLine.readFile(), equalTo(1));
+        assertThat(readerOneLine.getLineCount(), equalTo(1));
     }
 
     @Test
     public void readFile_readsFileTenLines_counterTen() throws IOException {
         salesRegistry2 = new SalesRegistry();
         readerTenLines = new SalesReaderCsv(salesRegistry2, "FileTenLines.csv");
-        assertThat(readerTenLines.readFile(), equalTo(10));
+        assertThat(readerTenLines.getLineCount(), equalTo(9));
     }
 
     @Test
-    public void readFile_readsEmptyFile_counterOne() throws IOException {
+    public void readFile_readsEmptyFile_countZero() throws IOException {
         salesRegistry3 = new SalesRegistry();
         readerEmptyFile = new SalesReaderCsv(salesRegistry3, "EmptyFile.csv");
-        assertThat(readerEmptyFile.readFile(), equalTo(1));
+        assertThat(readerEmptyFile.getLineCount(), equalTo(0));
     }
 
     @Test
