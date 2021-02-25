@@ -27,6 +27,24 @@ public abstract class Statistic {
 
     protected String getText() {
         switch (this.groupBy) {
+            case GLOBAL:
+                switch (this.statisticValue) {
+                    case OVERALL_PROFIT:
+                    case AVERAGE_PROFIT:
+                        return String.format("%1$,.2f", getDoubleValue());
+                    case MOST_PROFITABLE:
+                    case LEAST_PROFITABLE:
+                        return String.format("%s, %s (%.2f)",sale.getRegion(), sale.getCountry(), sale.getTotalProfit());
+                    case TOTAL_UNITS_SOLD:
+                    case TOTAL_COUNT:
+                        return String.format("%d", getIntValue());
+                    case MOST_UNITS_SOLD:
+                    case LEAST_UNITS_SOLD:
+                        return String.format("%s, %s (%d)",sale.getRegion(), sale.getCountry(), sale.getUnitsSold());
+                    default:
+                        return "";
+                }
+
             case REGION:
                 switch (this.statisticValue) {
                     case OVERALL_PROFIT:
