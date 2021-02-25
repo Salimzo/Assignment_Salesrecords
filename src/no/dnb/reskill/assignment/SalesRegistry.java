@@ -21,6 +21,8 @@ public class SalesRegistry {
     private final TreeMap<String, ArrayList<Sale>> regions = new TreeMap<>();
     private final TreeMap<String, ArrayList<Sale>> countries = new TreeMap<>();
     private final TreeMap<String, ArrayList<Sale>> itemTypes = new TreeMap<>();
+    private final ArrayList<String> statisticsCollection = new ArrayList<>();
+
 
     /**
      * Adds a Sale object to the array list containing all sales.
@@ -30,6 +32,19 @@ public class SalesRegistry {
     public boolean addSale(Sale sale) {
         this.indexSale(sale);
         return allSales.add(sale);
+    }
+
+    private void indexSale(Sale sale) {
+        updateTreeMap(regions, sale.getRegion(), sale);
+        updateTreeMap(countries, sale.getCountry(), sale);
+        updateTreeMap(itemTypes, sale.getItemType(), sale);
+    }
+
+    private void updateTreeMap(TreeMap<String, ArrayList<Sale>> treeMap, String key, Sale sale) {
+        if (!treeMap.containsKey(key)) {
+            treeMap.put(key, new ArrayList<>());
+        }
+        treeMap.get(key).add(sale);
     }
 
     /**
@@ -56,7 +71,7 @@ public class SalesRegistry {
 
 
     public String getStatisticsAsString(StatisticType type) {
-        List<String> statistics = getStatistics(type);
+        List<String> statistics = getStatisticsAsArray(type);
         StringBuilder sb = new StringBuilder();
         for ( String s : statistics ) {
             sb.append(String.format("%s %n", s));
@@ -64,78 +79,70 @@ public class SalesRegistry {
         return sb.toString();
     }
 
-    public List<String> getStatistics(StatisticType type) {
-        ArrayList<String> statistics = new ArrayList<>();
+
+    private List<String> getStatisticsAsArray(StatisticType type) {
 
         switch (type) {
             case NUMBER_OF_ORDERS_BY_REGION:
-                countSizeOfTreeMapValues(statistics, regions);
+                countSizeOfTreeMapValues(regions);
                 break;
 
             case NUMBER_OF_ORDERS_BY_COUNTRY:
-                countSizeOfTreeMapValues(statistics, countries);
+                countSizeOfTreeMapValues(countries);
                 break;
 
             case NUMBER_OF_ORDERS_BY_ITEMTYPE:
-                countSizeOfTreeMapValues(statistics, itemTypes);
+                countSizeOfTreeMapValues(itemTypes);
+                break;
+
+            case GLOBAL_KEY_NUMBERS:
+                testingSomething(StatisticGroup.GLOBAL, "Global key numbers", allSales);
                 break;
 
             case REGIONAL_KEY_NUMBERS:
-                extractKeyNumbersFromMapValues(statistics, regions, StatisticGroup.REGION);
+                extractKeyNumbersFromMapValues(regions, StatisticGroup.REGION);
                 break;
 
             case COUNTRY_KEY_NUMBERS:
-                extractKeyNumbersFromMapValues(statistics, countries, StatisticGroup.COUNTRY);
+                extractKeyNumbersFromMapValues(countries, StatisticGroup.COUNTRY);
                 break;
 
             default:
-                statistics.add("No valid selection. No statistic return");
+                statisticsCollection.add("No valid selection. No statistic return");
         }
-        return statistics;
+        return statisticsCollection;
     }
 
 
 
 
 
-    private void countSizeOfTreeMapValues(ArrayList<String> statistics, TreeMap<String,ArrayList<Sale>> map) {
+    private void countSizeOfTreeMapValues(TreeMap<String,ArrayList<Sale>> map) {
         for(Map.Entry<String,ArrayList<Sale>> entry : map.entrySet()) {
             String key = entry.getKey();
             ArrayList<Sale> sales = entry.getValue();
-            statistics.add(String.format("%s: %d orders", key, sales.size()));
+            statisticsCollection.add(String.format("%s: %d orders", key, sales.size()));
         }
     }
 
 
-    private void extractKeyNumbersFromMapValues(ArrayList<String> statistics, TreeMap<String,ArrayList<Sale>> map, StatisticGroup statisticGroup) {
-        StatisticRegistry statisticRegistry;
-
+    private void extractKeyNumbersFromMapValues(TreeMap<String,ArrayList<Sale>> map, StatisticGroup statisticGroup) {
         for(Map.Entry<String,ArrayList<Sale>> entry : map.entrySet()) {
-            statisticRegistry = new StatisticRegistry(statisticGroup);
-            String key = entry.getKey();
-            statisticRegistry.evaluateSales(entry.getValue());
-            statistics.add(String.format("%n------------ Key numbers for %s:", key));
-            statistics.addAll(statisticRegistry.getStatistics());
+            String title = String.format("Key numbers for %s:", entry.getKey());
+            testingSomething(statisticGroup, title, entry.getValue());
         }
     }
 
-
-
-
-
-
-    private void indexSale(Sale sale) {
-        updateTreeMap(regions, sale.getRegion(), sale);
-        updateTreeMap(countries, sale.getCountry(), sale);
-        updateTreeMap(itemTypes, sale.getItemType(), sale);
+    private void testingSomething(StatisticGroup statisticGroup, String statisticTitle, ArrayList<Sale> sales) {
+        StatisticRegistry statisticRegistry = new StatisticRegistry(statisticGroup);
+        statisticsCollection.add(String.format("%n------------ %s", statisticTitle));
+        statisticsCollection.addAll(statisticRegistry.createStatisticsFromSales(sales));
     }
 
 
-    private void updateTreeMap(TreeMap<String, ArrayList<Sale>> treeMap, String key, Sale sale) {
-        if (!treeMap.containsKey(key)) {
-            treeMap.put(key, new ArrayList<>());
-        }
-        treeMap.get(key).add(sale);
-    }
+
+
+
+
 
 }

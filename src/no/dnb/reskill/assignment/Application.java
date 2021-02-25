@@ -4,18 +4,22 @@ import no.dnb.reskill.assignment.statistics.StatisticType;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.text.ParseException;
 
-public class Application implements Usable {
+public class Application {
 
     private UI helper = new Helper();
     private SalesRegistry sr = new SalesRegistry();
     private SalesReaderCsv fileReader;
 
     public String getFileNameFromUser() {
-        return "SalesRecords.csv";
-//        return helper.getString("Enter CSV.file name");
+        return helper.getString("Enter CSV.file name");
     }
+
+    public Integer getOptionFromUser() {
+        return helper.getInt("Choose one of the options above: ");
+    }
+
+
 
     public void start() {
         try {
@@ -44,7 +48,7 @@ public class Application implements Usable {
                 System.out.println("Menu choice 7: Quit program");
                 System.out.println("------------------------------------------");
 
-                option = helper.getInt("Choose one of the options above: ");
+                option = getOptionFromUser();
 
                 switch (option) {
 
@@ -64,12 +68,11 @@ public class Application implements Usable {
                         System.out.println(sr.getStatisticsAsString(StatisticType.NUMBER_OF_ORDERS_BY_ITEMTYPE));
                         break;
                     case 6:
-                        System.out.println(sr.getStatisticsAsString(StatisticType.);
-                    case 6:
-                        fileReader.writeFile()
-                        System.out.println(insert method to write to file...........);
+                        //fileReader.writeFile("Summary.csv");
+                        //System.out.println(insert method to write to file...........);
+                        break;
                 }
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 System.out.printf("Wrong input.\n%s\n%s\n", e.getMessage(), e.getCause());
             }
         } while (option != 7);
