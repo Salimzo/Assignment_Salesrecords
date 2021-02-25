@@ -41,7 +41,7 @@ public class Application {
     public void start() {
         try {
             fileReader = new SalesReaderCsv(sr, getFileNameFromUser());
-            System.out.println(fileReader.getLineCount());
+            System.out.printf("Number of Lines read: %d", fileReader.getLineCount());
             menu();
         } catch (FileNotFoundException e) {
             System.out.println("Can't find file, sorry pal.");
