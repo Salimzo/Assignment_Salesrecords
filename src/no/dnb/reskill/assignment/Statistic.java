@@ -3,20 +3,7 @@ package no.dnb.reskill.assignment;
 import lombok.Getter;
 import lombok.Setter;
 
-enum StatisticGroup {
-    REGION,
-    COUNTRY,
-    ITEM_TYPE
-}
 
-enum StatisticValue {
-    OVERALL_PROFIT,
-    MOST_PROFITABLE,
-    LEAST_PROFITABLE,
-    TOTAL_UNITS_SOLD,
-    MOST_UNITS_SOLD,
-    LEAST_UNITS_SOLD
-}
 
 
 
@@ -45,11 +32,13 @@ public abstract class Statistic {
             case REGION:
                 switch (this.statisticValue) {
                     case OVERALL_PROFIT:
+                    case AVERAGE_PROFIT:
                         return String.format("%1$,.2f", getDoubleValue());
                     case MOST_PROFITABLE:
                     case LEAST_PROFITABLE:
                         return String.format("%s (%.2f)",sale.getCountry(), sale.getTotalProfit());
                     case TOTAL_UNITS_SOLD:
+                    case TOTAL_COUNT:
                         return String.format("%d", getIntValue());
                     case MOST_UNITS_SOLD:
                     case LEAST_UNITS_SOLD:
@@ -59,7 +48,23 @@ public abstract class Statistic {
                 }
 
             case COUNTRY:
-                return sale.getCountry();
+                switch (this.statisticValue) {
+                    case OVERALL_PROFIT:
+                    case AVERAGE_PROFIT:
+                        return String.format("%1$,.2f", getDoubleValue());
+                    case MOST_PROFITABLE:
+                    case LEAST_PROFITABLE:
+                        return String.format("%s (%.2f)",sale.getItemType(), sale.getTotalProfit());
+                    case TOTAL_UNITS_SOLD:
+                    case TOTAL_COUNT:
+                        return String.format("%d", getIntValue());
+                    case MOST_UNITS_SOLD:
+                    case LEAST_UNITS_SOLD:
+                        return String.format("%s (%d)",sale.getItemType(), sale.getUnitsSold());
+                    default:
+                        return sale.getCountry();
+                }
+
             case ITEM_TYPE:
                 return sale.getItemType();
             default:
@@ -69,12 +74,24 @@ public abstract class Statistic {
 
     protected String getDescription() {
         switch (this.statisticValue) {
+            case TOTAL_COUNT:
+                switch (this.groupBy) {
+                    case COUNTRY:
+                        return "Total number of item types";
+                    case REGION:
+                        return "Total number of countries";
+                    default:
+                        return "Total count";
+                }
+
             case OVERALL_PROFIT:
                 return "Overall profit";
             case MOST_PROFITABLE:
                 return "Most profitable";
             case LEAST_PROFITABLE:
                 return "Least profitable";
+            case AVERAGE_PROFIT:
+                return "Average profit";
             case TOTAL_UNITS_SOLD:
                 return "Total units sold";
             case MOST_UNITS_SOLD:

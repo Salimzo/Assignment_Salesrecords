@@ -7,12 +7,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 
-enum StatisticType {
-    NUMBER_OF_ORDERS_BY_REGION,
-    NUMBER_OF_ORDERS_BY_COUNTRY,
-    NUMBER_OF_ORDERS_BY_ITEMTYPE,
-    REGIONAL_KEY_NUMBERS
-}
+
 
 
 public class SalesRegistry {
@@ -77,8 +72,11 @@ public class SalesRegistry {
                 break;
 
             case REGIONAL_KEY_NUMBERS:
-                extractKeyNumbersFromMapValues(statistics, regions);
+                extractKeyNumbersFromMapValues(statistics, regions, StatisticGroup.REGION);
                 break;
+
+            case COUNTRY_KEY_NUMBERS:
+                extractKeyNumbersFromMapValues(statistics, countries, StatisticGroup.COUNTRY);
 
             default:
                 statistics.add("No valid selection. No statistic return");
@@ -99,27 +97,21 @@ public class SalesRegistry {
     }
 
 
-    private void extractKeyNumbersFromMapValues(ArrayList<String> statistics, TreeMap<String,ArrayList<Sale>> map) {
+    private void extractKeyNumbersFromMapValues(ArrayList<String> statistics, TreeMap<String,ArrayList<Sale>> map, StatisticGroup statisticGroup) {
         for(Map.Entry<String,ArrayList<Sale>> entry : map.entrySet()) {
-            statisticRegistry = new StatisticRegistry(StatisticGroup.REGION); //TODO: Optimize use of enum
+            statisticRegistry = new StatisticRegistry(statisticGroup);
 
             String key = entry.getKey();
             ArrayList<Sale> sales = entry.getValue();
             statistics.add(String.format("\n------------ Key numbers for %s:", key));
-            evaluateSales(sales);
+            statisticRegistry.evaluateSales(sales);
             for (String s : statisticRegistry.getStatistics()) {
                 statistics.add(s);
             }
         }
     }
 
-    // TODO: move to StatisticRegistry ???
-   private void evaluateSales(ArrayList<Sale> sales) {
-        for (Sale sale : sales) {
-            statisticRegistry.evaluateSale(sale);
-        }
 
-   }
 
 
 

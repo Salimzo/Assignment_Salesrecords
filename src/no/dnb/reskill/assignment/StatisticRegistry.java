@@ -2,27 +2,76 @@ package no.dnb.reskill.assignment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 
+enum StatisticType {
+    NUMBER_OF_ORDERS_BY_REGION,
+    NUMBER_OF_ORDERS_BY_COUNTRY,
+    NUMBER_OF_ORDERS_BY_ITEMTYPE,
+    REGIONAL_KEY_NUMBERS,
+    COUNTRY_KEY_NUMBERS,
+}
+
+enum StatisticGroup {
+    REGION,
+    COUNTRY,
+    ITEM_TYPE
+}
+
+enum StatisticValue {
+    TOTAL_COUNT,
+    OVERALL_PROFIT,
+    MOST_PROFITABLE,
+    LEAST_PROFITABLE,
+    AVERAGE_PROFIT,
+    TOTAL_UNITS_SOLD,
+    MOST_UNITS_SOLD,
+    LEAST_UNITS_SOLD
+}
 
 
 public class StatisticRegistry {
     private StatisticGroup groupBy;
-    private HashMap<StatisticValue, Statistic> statisticStorage;
+    private LinkedHashMap<StatisticValue, Statistic> statisticStorage;
+
 
     public StatisticRegistry(StatisticGroup groupBy) {
         this.groupBy = groupBy;
-        statisticStorage = new HashMap<>();
+        statisticStorage = new LinkedHashMap<>();
+        statisticStorage.put(StatisticValue.TOTAL_COUNT, null);
         statisticStorage.put(StatisticValue.OVERALL_PROFIT, null);
         statisticStorage.put(StatisticValue.MOST_PROFITABLE, null);
         statisticStorage.put(StatisticValue.LEAST_PROFITABLE, null);
+        statisticStorage.put(StatisticValue.AVERAGE_PROFIT, null);
         statisticStorage.put(StatisticValue.TOTAL_UNITS_SOLD, null);
         statisticStorage.put(StatisticValue.MOST_UNITS_SOLD, null);
         statisticStorage.put(StatisticValue.LEAST_UNITS_SOLD, null);
+
     }
 
-    public void evaluateSale(Sale sale) {
+
+    public void evaluateSales(ArrayList<Sale> sales) {
+        for (Sale sale : sales) {
+            evaluateSale(sale);
+        }
+
+
+        int count = sales.size();
+        StatisticInt totalCount = new StatisticInt(StatisticValue.TOTAL_COUNT, this.groupBy);
+        totalCount.setValue(count);
+        statisticStorage.put(StatisticValue.TOTAL_COUNT, totalCount);
+
+        double total = statisticStorage.get(StatisticValue.OVERALL_PROFIT).getDoubleValue();
+        double avr = total / count;
+        StatisticDouble sd = new StatisticDouble(StatisticValue.AVERAGE_PROFIT, this.groupBy );
+        sd.setValue(avr);
+        statisticStorage.put(StatisticValue.AVERAGE_PROFIT, sd);
+    }
+
+
+    private void evaluateSale(Sale sale) {
         for (Map.Entry<StatisticValue, Statistic> entry : statisticStorage.entrySet()) {
             StatisticValue key = entry.getKey();
             Statistic value = entry.getValue();

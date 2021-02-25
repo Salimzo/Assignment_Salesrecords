@@ -52,6 +52,7 @@ public class Application implements Usable {
                         System.out.println(sr.getStatisticsAsString(StatisticType.NUMBER_OF_ORDERS_BY_COUNTRY));
                         break;
                     case 4:
+                        System.out.println(sr.getStatisticsAsString(StatisticType.COUNTRY_KEY_NUMBERS) );
                         //System.out.println(sr.getStatisticsAsString(StatisticType.XXXXXXXXXXXXX));
                         break;
                     case 5:
