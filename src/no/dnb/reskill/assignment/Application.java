@@ -30,8 +30,7 @@ public class Application {
         if (option<1 || option>7) {
             throw new IllegalArgumentException("Sorry, enter a number between 1 and 7.\n");
         }
-        else if (!(option instanceof Integer)) {
-
+        else if (helper.isStringInt(option)) {
             throw new IllegalArgumentException("Sorry, enter an integer.\n");
         }
         return option;

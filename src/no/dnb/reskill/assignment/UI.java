@@ -12,4 +12,6 @@ public interface UI {
 
     public <T> void displayCollection(Collection<T> list);
 
+    public boolean isStringInt(int option);
+
 }
