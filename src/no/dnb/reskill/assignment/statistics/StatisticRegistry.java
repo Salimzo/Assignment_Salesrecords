@@ -29,11 +29,10 @@ public class StatisticRegistry {
     }
 
 
-    public void evaluateSales(List<Sale> sales) {
+    public List<String> createStatisticsFromSales(List<Sale> sales) {
         for (Sale sale : sales) {
-            evaluateSale(sale);
+            analyzeSale(sale);
         }
-
 
         int count = sales.size();
         StatisticInt totalCount = new StatisticInt(StatisticValue.TOTAL_COUNT, this.groupBy);
@@ -45,10 +44,25 @@ public class StatisticRegistry {
         StatisticDouble sd = new StatisticDouble(StatisticValue.AVERAGE_PROFIT, this.groupBy );
         sd.setValue(avr);
         statisticStorage.put(StatisticValue.AVERAGE_PROFIT, sd);
+
+        return getStatistics();
     }
 
 
-    private void evaluateSale(Sale sale) {
+    private List<String> getStatistics() {
+        ArrayList<String> list = new ArrayList<>();
+
+        for (Map.Entry<StatisticValue, Statistic> entry : statisticStorage.entrySet()) {
+            Statistic statistic = entry.getValue();
+            if (statistic != null) {
+                list.add(statistic.toString());
+            }
+        }
+        return list;
+    }
+
+
+    private void analyzeSale(Sale sale) {
         for (Map.Entry<StatisticValue, Statistic> entry : statisticStorage.entrySet()) {
             StatisticValue key = entry.getKey();
             Statistic value = entry.getValue();
@@ -123,23 +137,5 @@ public class StatisticRegistry {
             }
         }
     }
-
-
-
-    public List<String> getStatistics() {
-        ArrayList<String> list = new ArrayList<>();
-
-        for (Map.Entry<StatisticValue, Statistic> entry : statisticStorage.entrySet()) {
-            Statistic statistic = entry.getValue();
-            if (statistic != null) {
-                list.add(statistic.toString());
-            }
-        }
-        return list;
-    }
-
-
-
-
 
 }
