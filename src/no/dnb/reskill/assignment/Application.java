@@ -36,7 +36,7 @@ public class Application {
                 return -10;
             }
             return option;
-        } catch (InputMismatchException e) {
+        } catch (NumberFormatException e) {
             System.out.println("Sorry, enter an integer.");
         }
         return 7;
