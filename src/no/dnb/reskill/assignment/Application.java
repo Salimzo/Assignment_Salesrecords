@@ -63,7 +63,7 @@ public class Application implements Usable {
                         System.out.println(sr.getStatisticsAsString(StatisticType.NUMBER_OF_ORDERS_BY_ITEMTYPE));
                         break;
                     case 6:
-                        //System.out.println(...........);
+                        //System.out.println(insert method to write to file...........);
                 }
             } catch (Exception e) {
                 System.out.printf("Wrong input.\n%s\n%s\n", e.getMessage(), e.getCause());
