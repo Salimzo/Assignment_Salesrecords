@@ -8,11 +8,10 @@ import org.mockito.MockitoAnnotations;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.InputMismatchException;
 
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -52,7 +51,7 @@ public class TestApplication {
     @Test
     public void getAndValidateOptionFromUser_userInputsCorrect_returnInteger() {
         when(mockHelper.getInt("Choose one of the options above: ")).thenReturn(4);
-        assertEquals(fixture.getAndValidateOptionFromUser(), equalTo(4));
+        assertEquals(fixture.getAndValidateOptionFromUser(),4);
         verify(mockHelper).getInt("Choose one of the options above: ");
     }
 
@@ -62,7 +61,7 @@ public class TestApplication {
         fixture.getAndValidateOptionFromUser();
     }
 
-    @Test (expected = IllegalArgumentException.class)
+    @Test (expected = InputMismatchException.class)
     public void getAndValidateOptionFromUser_notAnInteger_throwsException() {
         when(mockHelper.getInt("Choose one of the options above: ")).thenReturn(Integer.valueOf("X"));
         fixture.getAndValidateOptionFromUser();

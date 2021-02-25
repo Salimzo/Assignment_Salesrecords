@@ -15,7 +15,7 @@ public class Application {
         return helper.getString("Enter CSV.file name");
     }
 
-    public Integer getAndValidateOptionFromUser() {
+    public int getAndValidateOptionFromUser() {
         System.out.println("Options");
         System.out.println("Menu choice 1: Number of orders by region");
         System.out.println("Menu choice 2: Regional key numbers");
@@ -25,12 +25,13 @@ public class Application {
         System.out.println("Menu choice 6: Write to file");
         System.out.println("Menu choice 7: Quit program");
         System.out.println("------------------------------------------");
-        Integer option = helper.getInt("Choose one of the options above: ");
+        int option = helper.getInt("Choose one of the options above: ");
 
         if (option<1 || option>7) {
             throw new IllegalArgumentException("Sorry, enter a number between 1 and 7.\n");
         }
         else if (!(option instanceof Integer)) {
+
             throw new IllegalArgumentException("Sorry, enter an integer.\n");
         }
         return option;
@@ -41,7 +42,7 @@ public class Application {
     public void start() {
         try {
             fileReader = new SalesReaderCsv(sr, getFileNameFromUser());
-            System.out.printf("Number of Lines read: %d", fileReader.getLineCount());
+            System.out.printf("Number of Lines read: %d\n", fileReader.getLineCount());
             menu();
         } catch (FileNotFoundException e) {
             System.out.println("Can't find file, sorry pal.");
