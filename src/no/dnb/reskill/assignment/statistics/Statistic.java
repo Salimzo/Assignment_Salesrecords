@@ -8,6 +8,7 @@ import no.dnb.reskill.assignment.Sale;
 @Getter
 @Setter
 public abstract class Statistic {
+    public static final String DOUBLE_FORMAT = "%1$,.2f";
     protected StatisticValue statisticValue;
     protected Sale sale;
     protected StatisticGroup groupBy;
@@ -31,7 +32,7 @@ public abstract class Statistic {
                 switch (this.statisticValue) {
                     case OVERALL_PROFIT:
                     case AVERAGE_PROFIT:
-                        return String.format("%1$,.2f", getDoubleValue());
+                        return String.format(DOUBLE_FORMAT, getDoubleValue());
                     case MOST_PROFITABLE:
                     case LEAST_PROFITABLE:
                         return String.format("%s, %s (%.2f)",sale.getRegion(), sale.getCountry(), sale.getTotalProfit());
@@ -49,7 +50,7 @@ public abstract class Statistic {
                 switch (this.statisticValue) {
                     case OVERALL_PROFIT:
                     case AVERAGE_PROFIT:
-                        return String.format("%1$,.2f", getDoubleValue());
+                        return String.format(DOUBLE_FORMAT, getDoubleValue());
                     case MOST_PROFITABLE:
                     case LEAST_PROFITABLE:
                         return String.format("%s (%.2f)",sale.getCountry(), sale.getTotalProfit());
@@ -67,7 +68,7 @@ public abstract class Statistic {
                 switch (this.statisticValue) {
                     case OVERALL_PROFIT:
                     case AVERAGE_PROFIT:
-                        return String.format("%1$,.2f", getDoubleValue());
+                        return String.format(DOUBLE_FORMAT, getDoubleValue());
                     case MOST_PROFITABLE:
                     case LEAST_PROFITABLE:
                         return String.format("%s (%.2f)",sale.getItemType(), sale.getTotalProfit());

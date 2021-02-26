@@ -11,7 +11,7 @@ import java.util.Formatter;
 
 public class SaveSummary {
 
-    public static String writeUsingBufferedWriter(String data) throws IOException  {
+    public static String saveToFile(String data) throws IOException  {
         String filename = createFileWithTimestamp();
         readToFile(filename, data);
         return filename;

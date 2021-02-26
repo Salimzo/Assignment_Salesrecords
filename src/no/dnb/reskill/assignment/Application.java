@@ -7,13 +7,9 @@ import java.io.IOException;
 import java.util.InputMismatchException;
 
 public class Application {
+    private final UI helper = new Helper();
+    private final SalesRegistry sr = new SalesRegistry();
 
-    private static final int NUMBER_OF_LINES_IN_SUMMARY = 10;
-
-    private UI helper = new Helper();
-    private SalesRegistry sr = new SalesRegistry();
-    private SalesReaderCsv fileReader;
-    private SaveSummary saveSummary;
 
     public String getFileNameFromUser() {
         return helper.getString("Enter CSV.file name");
@@ -30,14 +26,17 @@ public class Application {
         System.out.println("| 6: Write to file");
         System.out.println("| 7: Quit program");
         System.out.println("------------------------------------------");
+
         try {
             int option = helper.getInt("Choose one of the options above: ");
             if (option<1 || option>7) {
                 System.out.println("Sorry, enter a number between 1 and 7.\n");
-                return -10;
             }
             return option;
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException e ) {
+            System.out.println("Sorry, enter an integer.");
+
+        } catch (InputMismatchException e2) {
             System.out.println("Sorry, enter an integer.");
         }
         return 7;
@@ -46,6 +45,7 @@ public class Application {
 
 
     public void start() {
+        SalesReaderCsv fileReader;
         try {
             fileReader = new SalesReaderCsv(sr, getFileNameFromUser());
             System.out.printf("Number of Lines read: %d\n", fileReader.getLineCount());
@@ -95,7 +95,7 @@ public class Application {
     private void exportFileFromMenu() {
         String data = sr.getStatisticsAsString(StatisticType.GLOBAL_KEY_NUMBERS);
         try {
-            String filename = saveSummary.writeUsingBufferedWriter(data);
+            String filename = SaveSummary.saveToFile(data);
             System.out.printf("I have stored the global key numbers to file %s%n", filename);
         } catch (IOException e) {
             System.out.println(e.getMessage());
