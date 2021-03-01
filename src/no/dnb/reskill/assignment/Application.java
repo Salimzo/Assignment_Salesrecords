@@ -7,9 +7,12 @@ import java.io.IOException;
 import java.util.InputMismatchException;
 
 public class Application {
-    private final UI helper = new Helper();
+    private final UI helper;
     private final SalesRegistry sr = new SalesRegistry();
 
+    public Application (UI helper) {
+        this.helper = helper;
+    }
 
     public String getFileNameFromUser() {
         return helper.getString("Enter CSV.file name");
