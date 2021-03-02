@@ -44,7 +44,7 @@ public class TestApplication {
     }
 
     @Test
-    public void getAndValidateOptionFromUser_integerOverSeven_retJippiiiurnMinusTen() {
+    public void getAndValidateOptionFromUser_integerOverSeven_returnMinusTen() {
         when(mockHelper.getInt("Choose one of the options above: ")).thenReturn(14);
         assertEquals(fixture.getAndValidateOptionFromUser(),-10);
         verify(mockHelper).getInt("Choose one of the options above: ");
