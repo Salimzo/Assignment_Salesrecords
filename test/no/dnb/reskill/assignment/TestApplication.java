@@ -50,9 +50,10 @@ public class TestApplication {
         verify(mockHelper).getInt("Choose one of the options above: ");
     }
 
-    @Test (expected = NumberFormatException.class)
+    @Test (expected = AssertionError.class)
     public void getAndValidateOptionFromUser_notAnInteger_throwsException() {
-        when(mockHelper.getInt("Choose one of the options above: ")).thenReturn(Integer.valueOf("X"));
+       //when(mockHelper.getInt("Choose one of the options above: ")).thenReturn(Integer.valueOf("X"));
+        when(mockHelper.getInt("Choose one of the options above: ")).thenThrow(AssertionError.class);
         fixture.getAndValidateOptionFromUser();
     }
 
